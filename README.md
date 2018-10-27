@@ -32,7 +32,7 @@ And use them as you like:
 [2.125, 0.425, -2.5, -0.75]
 ```
 
-More on the use of this module is provided in the [tests.py]() file.
+More on the use of this module is provided in the [tests.py](https://github.com/rafi007akhtar/stapy/blob/master/tests.py) file.
 
 ### `inferential.py`
 Coming soon.
