@@ -68,31 +68,59 @@ def get_central(distribution):
     return {"mean": mean, "median": median, "mode": mode}
 
 
-def get_variance(distribution):
+def get_variance(distribution, bessel = False):
     """
     Get the variance of a population.
-    Parameter: a list containing the distribution of the sample or population
-    Returns: the variance = sum (squared(xi-mean)) for i = 0 to n-1
+    Parameters
+    ----------
+    distribution: a list containing the distribution of the sample or population.
+    [optional] bessel: a boolean that computes the sample variance if True (that is, with divides by n-1 instead of n if True).
+
+    Returns
+    -------
+    The variance = sum (squared(xi-mean)) / n for i = 0 to n-1
+    (When bessel is set, variance = sum (squared(xi-mean)) / (n-1) for i = 0 to n-1)
     """
 
     mean = get_mean(distribution)
     deviations = [xi-mean for xi in distribution]
     dev_squared = [deviation**2 for deviation in deviations]
     
-    return sum(dev_squared) / len(dev_squared)
+    n = len(dev_squared)
+    if bessel: n = n-1  # for Bessel corrected variance
+    return sum(dev_squared) / n
 
 
-def get_SD(distribution):
+def get_SD(distribution, variance = None):
     """
     Get the standard distribution of a population.
-    arameter: a list containing the distribution of the sample or population
-    Returns: SD = sqrt(variance)
+
+    Parameters
+    ----------
+    * distribution: a list containing the distribution of the sample or population
+    * [optional] variance: the variance pre-supplied (None by default)
+    Note: If you are supplying your own variance, set the first parameter (that is, the distribution) to None.
+
+    Returns
+    -------
+    Standard deviation, either of the distribution or from the variance given.
     """
 
-    variance = get_variance(distribution)
+    if not variance:
+        variance = get_variance(distribution)
     return variance ** 0.5
     
+def bessel_correction(distribution):
+    """
+    Get the Bessel corrected variance and distribution of a sample.
+    Parameter: a list containing the distribution of the sample.
+    Returns: A dictionary with keys "Sample variance" and "Sample SD", and their corresponding values.
+    """
 
+    sample_variance = get_variance(distribution, bessel=True)
+    sample_SD = get_SD(None, sample_variance)
+    
+    return {"Sample variance": sample_variance, "Sample SD": sample_SD}
     
 
     
