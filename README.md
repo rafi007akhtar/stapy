@@ -36,3 +36,6 @@ More on the use of this module is provided in the [tests.py](https://github.com/
 
 ### `inferential.py`
 Coming soon.
+
+## LICENSE
+[MIT License](https://github.com/rafi007akhtar/stapy/blob/master/LICENSE)
