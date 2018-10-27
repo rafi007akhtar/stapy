@@ -8,3 +8,9 @@ print(f'Central tendencies of sample {sample}: \n {get_central(sample)}')
 ## odd sample size
 sample = [12,19,7,1,7]
 print(f'Central tendencies of sample {sample}: \n {get_central(sample)}')
+
+print()
+
+# testing standard deviation
+population = [2,4,21,32,423,12]
+print(f'For population {population}:\n Variance = {get_variance(population)} \n SD = {get_SD(population)}')

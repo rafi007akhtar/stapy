@@ -68,7 +68,29 @@ def get_central(distribution):
     return {"mean": mean, "median": median, "mode": mode}
 
 
+def get_variance(distribution):
+    """
+    Get the variance of a population.
+    Parameter: a list containing the distribution of the sample or population
+    Returns: the variance = sum (squared(xi-mean)) for i = 0 to n-1
+    """
 
+    mean = get_mean(distribution)
+    deviations = [xi-mean for xi in distribution]
+    dev_squared = [deviation**2 for deviation in deviations]
+    
+    return sum(dev_squared) / len(dev_squared)
+
+
+def get_SD(distribution):
+    """
+    Get the standard distribution of a population.
+    arameter: a list containing the distribution of the sample or population
+    Returns: SD = sqrt(variance)
+    """
+
+    variance = get_variance(distribution)
+    return variance ** 0.5
     
 
     
