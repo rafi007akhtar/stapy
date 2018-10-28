@@ -5,6 +5,55 @@ To use it in your code, enter one of the following lines:
     >>> from stapy.descriptive import func_name  # to import a specific function of this module
 """
 
+def get_sampling_error(mu, xbar):
+    """
+    Sampling error is defined as the difference between mean of the population and mean of the sample.
+
+    Parameters
+    ----------
+    mu: mean of the parameter
+    xbar: mean of the sample
+
+    Returns
+    -------
+    The sampling error mu-xbar.
+    """
+
+    return mu - xbar
+
+
+def visualize(sample, name = "Data"):
+    """
+    This function takes a sample of categorical data as a list, and visualizes its elements in the form of a table, containing:
+        * name of the sample
+        * frequency of each sample element
+        * relative frequencies (or proportions) of the sample
+        * corresponding percentages.
+    """ 
+
+    n = len(sample)  # sample size
+
+    # At first, get the frequency of each element
+    unique = list(set(sample))
+    freq = [sample.count(xi) for xi in unique]
+
+    # Next, get the relative frequencies and percentages
+    rel_freq = [f/n for f in freq]
+    percentages = [rf*100 for rf in rel_freq]
+
+    # Shorten the element names (for more readable printing)
+    m = len(unique)
+    for i in range(m):
+        if len(unique[i]) > 3:
+            unique[i] = unique[i][:3] + "..."
+
+    # Finally, write them down in a table
+    print(f'{name} \tFrequency \tProportion \tPercentage (%)')
+    print("-----------------------------------------------------------")
+    for i in range(m):
+        print(f'{unique[i]} \t\t{freq[i]} \t\t{rel_freq[i]} \t\t{percentages[i]}')
+
+
 def get_mean(distribution):
     """
     Mean is defined as the sum of all the elements of the distribution over its size.
