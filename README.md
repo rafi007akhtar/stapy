@@ -10,11 +10,15 @@ As of now, I have only touched topics on Descriptive Statistics. Once that is do
 
 ### `descriptive.py`
 Contains functions related to Descriptive Statistics, comprising:
+- visualizing categorical data into a table
 - one function each for mean, median and mode
 - one function for all central tendencies 
 - population variance
 - population standard deviation
 - one function of sample variance and sample SD
+- range, quartiles, IQR of a distribution
+- outlier checking and elimination in a distribution
+- boxplot summary printing
 - Z-scores of a distribution.
 
 In order to use this, you may import the entire module:
@@ -37,5 +41,5 @@ More on the use of this module is provided in the [tests.py](https://github.com/
 ### `inferential.py`
 Coming soon.
 
-## LICENSE
+## License
 [MIT License](https://github.com/rafi007akhtar/stapy/blob/master/LICENSE)
