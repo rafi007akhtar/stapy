@@ -168,13 +168,22 @@ def get_IQR(distribution, quartiles = None):
     return quartiles["Q3"] - quartiles["Q1"]
 
 
-def is_outlier(val, distribution):
+def is_outlier(val, distribution, quartiles = None):
     """
     Checks if val is an outlier in the distribution.
-    Parameter: the list containing the sample or population distribution.
-    Returns: true if val is an outlier; false otherwise.
+    Parameters
+    ----------
+    * val: the value to check if it is an outlier
+    * distribution: the list containing the sample or population distribution.
+    * [optional] quartiles: dictionary including first and third quartiles as values to keys "Q1" and "Q3". If not provided, it will be calculated.
+    
+    Returns
+    -------- 
+    True if val is an outlier; False otherwise.
     """
-    quartiles = get_quartiles(distribution)
+
+    if not quartiles:
+        quartiles = get_quartiles(distribution)
 
     q1 = quartiles["Q1"]
     q3 = quartiles["Q3"]
@@ -183,6 +192,54 @@ def is_outlier(val, distribution):
         return True  # outlier it is
     else: return False  # not an outlier
 
+
+def eleminate_outliers(distribution, quartiles = None):
+    """
+    Parameters
+    ----------
+    * distribution: the list containing the sample or population distribution.
+    * [optional] quartiles: dictionary including first and third quartiles as values to keys "Q1" and "Q3". If not provided, it will be calculated.
+
+    Returns
+    -------
+    The same distribution with outliers removed.
+    """
+
+    if not quartiles:
+        quartiles = get_quartiles(distribution)
+
+    cleaned_dist = [xi for xi in distribution if not is_outlier(xi, distribution, quartiles)]
+
+    return cleaned_dist
+
+
+def boxplot_summary(distribution):
+    """
+    A boxplot is a 5-number summary of a distribution drawn on a number line, comprising:
+        i) non-outlier min
+        ii) first quartile
+        iii) second quartile
+        iv) third quartile
+        v) non-outlier max.
+    This function takes the list containing the distribution of the sample or population, and prints this summary.
+    """
+
+    # At first, get the quartiles
+    quartiles = get_quartiles(distribution)
+    q1, q2, q3 = quartiles["Q1"], quartiles["Q2"], quartiles["Q3"]
+
+    # Now, eliminate outliers
+    distribution = eleminate_outliers(distribution, quartiles)
+
+    # Finally, print the boxplot summary
+    print("Boxplot summary of the given distribution \n--------------------------------")
+    print(f"\
+            1. Min: {min(distribution)} \n\
+            2. Q1: {q1} \n\
+            3. Q2: {q2} \n\
+            4. Q3: {q3} \n\
+            5. Max: {max(distribution)}")
+    
 
 def get_variance(distribution, bessel = False, mean = None):
     """
@@ -243,6 +300,8 @@ def bessel_correction(distribution):
     
     return {"Sample variance": sample_variance, "Sample SD": sample_SD}
     
+
+### STANDARDIZING NORMAL DISTRIBUTIONS ###
 
 def get_Z_scores(distribution, mean = None, SD = None):
     """
