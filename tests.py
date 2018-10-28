@@ -68,7 +68,7 @@ print()
 
 ## outliers
 sample = [
-    38946, 43420, 49191, 50432, 50557, 
+    0.00005, 38946, 43420, 49191, 50432, 50557, 
     52580, 53595, 54135, 60181, 10000000
 ]
 val = 10000000
@@ -76,4 +76,13 @@ print(f"For sample {sample}")
 print (f" It is {is_outlier(val, sample)} that {val} is an outlier.")
 val = 60181
 print (f" It is {is_outlier(val, sample)} that {val} is an outlier.")
+print (f"After eliminating outliers, the sample is {eleminate_outliers(sample)}")
 
+print()
+
+sample = [
+    38946, 43420, 49191, 50432, 50557, 
+    52580, 53595, 54135, 60181, 10000000
+]
+print(f"Sample: {sample}")
+boxplot_summary(sample)
