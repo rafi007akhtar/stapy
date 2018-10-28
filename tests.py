@@ -1,5 +1,22 @@
 from descriptive import *
 
+# visualizing data
+countries = [
+    "US", "China", "US", "Sweden", "China", 
+    "Canada", "China", "Japan", "Mexico", "US",
+    "China", "Germany", "India", "India", "Japan",
+    "US", "US", "US", "China", "China", 
+    "India", "Japan", "England", "India", "Japan",
+    "England", "India", "China", "Mexico", "US",
+    "Mexico", "US", "Canada", "Pakistan", "India",
+    "Japan", "China", "US", "Japan", "Germany",
+    "China", "India", "India", "China", "China",
+    "Germany", "Japan", "China", "US", "Japan"
+]
+visualize(sample=countries, name="Country")
+
+print()
+
 # testing central tendencies
 
 ## even sample size
