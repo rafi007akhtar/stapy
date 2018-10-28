@@ -5,6 +5,8 @@ To use it in your code, enter one of the following lines:
     >>> from stapy.descriptive import func_name  # to import a specific function of this module
 """
 
+### INTRO TO STATISTICS ###
+
 def get_sampling_error(mu, xbar):
     """
     Sampling error is defined as the difference between mean of the population and mean of the sample.
@@ -21,6 +23,8 @@ def get_sampling_error(mu, xbar):
 
     return mu - xbar
 
+
+### DATA VISUALIZATION ###
 
 def visualize(sample, name = "Data"):
     """
@@ -53,6 +57,8 @@ def visualize(sample, name = "Data"):
     for i in range(m):
         print(f'{unique[i]} \t\t{freq[i]} \t\t{rel_freq[i]} \t\t{percentages[i]}')
 
+
+### CENTRAL TENDENCIES ###
 
 def get_mean(distribution):
     """
@@ -115,6 +121,67 @@ def get_central(distribution):
     mode = get_mode(distribution)
 
     return {"mean": mean, "median": median, "mode": mode}
+
+
+### VARIABILITY ###
+
+def get_range(distribution):
+    """ Returns the range of a distribution """
+    return max(distribution) - min(distribution)
+
+
+def get_quartiles(distribution):
+    """
+    Parameter: the list containing the sample or population distribution.
+    Returns: a dictionary with keys "Q1", "Q2", "Q3" and corresponding values as first, second and third quartiles.
+    """
+
+    q2 = get_median(distribution)  # second quartile
+
+    n = len(distribution)
+    m = int(n/2)
+    first_half = distribution[:m]
+    if n%2 == 1: second_half = distribution[m+1:]
+    else: second_half = distribution[m:]
+
+    q1 = get_median(first_half)  # first quartile
+    q3 = get_median(second_half)  # second quartile
+
+    return {"Q1": q1, "Q2": q2, "Q3": q3}
+
+
+def get_IQR(distribution, quartiles = None):
+    """
+    Parameters
+    -----------
+    * distribution: the list containing the sample or population distribution
+    * [optional] quartiles: the quartiles dictionary pre-supplied.
+    If quartiles is supplied, set distribution to False.
+
+    Returns
+    -------
+    the inter-quartile range (Q3-Q1) of a distribution.
+    """
+
+    if  not quartiles:
+        quartiles = get_quartiles(distribution)
+    return quartiles["Q3"] - quartiles["Q1"]
+
+
+def is_outlier(val, distribution):
+    """
+    Checks if val is an outlier in the distribution.
+    Parameter: the list containing the sample or population distribution.
+    Returns: true if val is an outlier; false otherwise.
+    """
+    quartiles = get_quartiles(distribution)
+
+    q1 = quartiles["Q1"]
+    q3 = quartiles["Q3"]
+
+    if val < (2.5*q1 - 1.5*q3) or val > (2.5*q3 - 1.5*q1):
+        return True  # outlier it is
+    else: return False  # not an outlier
 
 
 def get_variance(distribution, bessel = False, mean = None):
