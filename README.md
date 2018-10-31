@@ -8,7 +8,7 @@ As of now, I have only touched topics on Descriptive Statistics. Once that is do
 
 ## Modules in this package
 
-### `descriptive.py`
+### [`descriptive.py`](https://github.com/rafi007akhtar/stapy/blob/master/descriptive.py)
 Contains functions related to Descriptive Statistics, comprising:
 - visualizing categorical data into a table
 - one function each for mean, median and mode
@@ -22,15 +22,15 @@ Contains functions related to Descriptive Statistics, comprising:
 - Z-scores of a distribution.
 
 In order to use this, you may import the entire module:
-```
+```py
 from stapy import descriptive
 ```
 Or, you may include a particular function:
-```
+```py
 from stapy.descriptive import get_Z_scores
 ```
 And use them as you like:
-```
+```py
 >>> sample = [205,137,20,90]
 >>> get_Z_scores(sample, mean=120, SD=40)
 [2.125, 0.425, -2.5, -0.75]
