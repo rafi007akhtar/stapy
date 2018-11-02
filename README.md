@@ -19,7 +19,10 @@ Contains functions related to Descriptive Statistics, comprising:
 - range, quartiles, IQR of a distribution
 - outlier checking and elimination in a distribution
 - boxplot summary printing
-- Z-scores of a distribution.
+- Z-scores of a distribution
+- randomly selecting all the samples from a population
+- sampling distrubution of a population
+- standard error of a population.
 
 In order to use this, you may import the entire module:
 ```py
