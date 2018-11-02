@@ -333,3 +333,72 @@ def get_Z_scores(distribution, mean = None, SD = None):
     return z_scores
     
 
+### SAMPLING DISTRIBUTIONS ###
+
+from random import shuffle
+
+def get_samples(population, n):
+    """
+    Get a list of all samples of a population.
+
+    Parameters
+    ----------
+    * population: a list containing the population of the distribution.
+    * n: size of each sample to be extracted from the population
+
+    Returns
+    -------
+    A list of lists, containing all the samples of the population, randomly selected.
+    """
+
+    shuffle(population)  # for random selection
+
+    samples = []  
+    n_batches = int(len(population) / n)  # number of batches
+    pos = 0
+
+    for i in range(n_batches):
+        sample = population[pos:pos+n]
+        samples.append(sample)
+        pos = pos + n
+    
+    return samples
+
+
+def get_sampling_distribution(samples):
+    """
+    Get the sampling distribution of all samples of a population.
+
+    Parameter: a list of lists containing all possibile samples of a distribution.
+    Returns: sampling distribution, which is the list of means of all samples given.
+    """
+
+    sampling_distribution = [get_mean(sample) for sample in samples]
+    return sampling_distribution
+
+
+def get_SE(sigma, n, population = None):
+    """
+    Get the Standard Error (SE) of a sample.
+
+    Parameters
+    -----------
+    * sigma: the standard deviation of the population.
+    * n: size of each sample in the sampling distribution.
+    * [optional] population: a list containing the population, in case you don't have its SD calculated. 
+    In such a case, put sigma=None while calling this function.
+
+    Returns
+    -------
+    The Standard Error (SE) of the sample.
+    SE = sigma / root(n) [from the Central Limit Theorem]
+    """
+
+    # Calculate the SD of population, if population is provided
+    if population:
+        sigma = get_SD(population)
+    
+    # return SE
+    return sigma / (n ** 0.5)
+
+
