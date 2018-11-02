@@ -145,7 +145,7 @@ def get_quartiles(distribution):
     else: second_half = distribution[m:]
 
     q1 = get_median(first_half)  # first quartile
-    q3 = get_median(second_half)  # second quartile
+    q3 = get_median(second_half)  # third quartile
 
     return {"Q1": q1, "Q2": q2, "Q3": q3}
 
@@ -156,7 +156,7 @@ def get_IQR(distribution, quartiles = None):
     -----------
     * distribution: the list containing the sample or population distribution
     * [optional] quartiles: the quartiles dictionary pre-supplied.
-    If quartiles is supplied, set distribution to False.
+    If quartiles is supplied, set distribution to None.
 
     Returns
     -------
@@ -247,7 +247,7 @@ def get_variance(distribution, bessel = False, mean = None):
     Parameters
     ----------
     * distribution: a list containing the distribution of the sample or population.
-    * [optional] bessel: a boolean that computes the sample variance if True (that is, with divides by n-1 instead of n if True).
+    * [optional] bessel: a boolean that computes the sample variance if True (that is, divides by n-1 instead of n if True).
     * [optional] mean: the average of the distribution; it will be computed if not provided.
 
     Returns
@@ -264,7 +264,7 @@ def get_variance(distribution, bessel = False, mean = None):
     dev_squared = [deviation**2 for deviation in deviations]
     
     n = len(dev_squared)
-    if bessel: n = n-1  # for Bessel corrected variance
+    if bessel: n = n-1  # for Bessel-corrected variance
     return sum(dev_squared) / n  # variance
 
 
