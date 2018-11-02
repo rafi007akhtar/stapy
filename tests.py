@@ -86,3 +86,36 @@ sample = [
 ]
 print(f"Sample: {sample}")
 boxplot_summary(sample)
+
+print()
+
+# test sampling distributions
+
+population = [1,2,3,4]
+n = 2
+print (f"For population {population}")
+
+## samples
+dist = get_samples(population, n)
+print (f" Samples of size {n}: {dist}")
+
+print()
+
+## sampling distribution
+
+samples = [
+    [1,1], [1,2], [1,3], [1,4],
+    [2,1], [2,2], [2,3], [2,4],
+    [3,1], [3,2], [3,3], [3,4],
+    [4,1], [4,2], [4,3], [4,4]
+]
+print (f"For samples {samples}")
+samp_dist = get_sampling_distribution(samples)
+print (f" Sampling distribution: {samp_dist}")
+print (f" Mean: {get_mean(samp_dist)}")
+
+print()
+
+## standard error
+print (f" SE = {get_SE(sigma=None, n=n, population=population)}")
+
