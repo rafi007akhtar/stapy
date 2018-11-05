@@ -331,6 +331,43 @@ def get_Z_scores(distribution, mean = None, SD = None):
     z_scores = [(xi - mean) / SD for xi in distribution]
 
     return z_scores
+
+
+from constants import z_table
+def get_area(z):
+    """
+    Parameter: the z-score whose proportion is needed to be calculated (valid upto 2 decimal places).
+    Returns: area under normal curve for x <= z.
+    """
+    try:
+        if z < 0:
+            z = (-1 * z)
+            area = 1-z_table[int(z*100)]
+        else:
+            area = z_table[int(z*100)]
+        return area
+    except:
+        print("Invalid z-score")
+
+
+def get_probability(x, mu, sigma):
+    """
+    Get the probability of selecting a value x from a population.
+    
+    Parameters
+    ----------
+    * x: value whose probability needs to be calulated
+    * mu: mean of the population
+    * sigma: standard deviation of the population
+
+    Returns
+    -------
+    The probabilty to select value x from a population with mean mu and SD sigma.
+    """
+
+    z = get_Z_scores([x], mu, sigma)[0]
+    area = get_area(z)
+    return area
     
 
 ### SAMPLING DISTRIBUTIONS ###
