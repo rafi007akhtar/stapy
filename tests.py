@@ -133,3 +133,23 @@ print()
 ## standard error
 print (f" SE = {get_SE(sigma=None, n=n, population=population)}")
 
+print()
+
+## sample z-score
+
+"""
+Question: A normally distributed population has a mean of mu=100 and a standard deviation of sigma=20.
+What is the probability of randomly selecting a sample of size 4 that has a mean greater than 110?
+
+Question source: [Intro to Statisitcs | Udacity] (https://classroom.udacity.com/courses/st095/lessons/116588932/concepts/2518247670923)
+"""
+# first, get the SE
+SE = get_SE(sigma=20, n=4)
+# now, get the z-score of this sample
+z_sample = get_z_sample(xbar=100, mu=110, SE=SE)
+# now, get the proportion of data less or equal to this z
+area_less = get_area(z_sample)
+# area more than this is 1-area_less
+area_more = 1-area_less
+print(f"Answer: {area_less}")
+
