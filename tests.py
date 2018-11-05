@@ -50,6 +50,19 @@ print(f'For population {population} \n Z-scores: {get_Z_scores(population)}')
 
 print()
 
+## proportions
+print(f"Area for z<=3.423: {get_area(z=3.42)}")
+print(f"Area for z<=-1.5: {get_area(z=-1.5)}")
+print(f"Area for z<=5: {get_area(z=5)}")
+
+print()
+
+## probability
+x = 95
+mu = get_mean(population)
+sigma = get_SD(population)
+print(f"Probability to select {x} with mean {mu} and SD {sigma}: {get_probability(x, mu, sigma)}")
+
 # testing variability
 
 ## quartiles
@@ -88,6 +101,7 @@ print(f"Sample: {sample}")
 boxplot_summary(sample)
 
 print()
+
 
 # test sampling distributions
 
