@@ -20,9 +20,11 @@ Contains functions related to Descriptive Statistics, comprising:
 - outlier checking and elimination in a distribution
 - boxplot summary printing
 - Z-scores of a distribution
+- proportion using z-table
 - randomly selecting all the samples from a population
 - sampling distrubution of a population
-- standard error of a population.
+- standard error of a population
+- sample z-score.
 
 In order to use this, you may import the entire module:
 ```py
