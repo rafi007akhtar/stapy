@@ -438,4 +438,22 @@ def get_SE(sigma, n, population = None):
     # return SE
     return sigma / (n ** 0.5)
 
+def get_z_sample(xbar, mu, SE):
+    """
+    Return the z-score of a sample, from a sampling distribution.
+
+    Parameters
+    ----------
+    * xbar: mean of the current sample.
+    * mu: mean of the population from where the sample is drawn.
+    * SE: standard error of the sampling distribution (population SD / root(population size))
+
+    Returns
+    -------
+    The z-score of the sample with mean less than or equal to xbar.
+    Given by (xbar - mu) / SE.
+    """
+    return (xbar-mu) / SE
+
+
 
