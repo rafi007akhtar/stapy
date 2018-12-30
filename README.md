@@ -44,7 +44,25 @@ And use them as you like:
 More on the use of this module is provided in the [tests.py](https://github.com/rafi007akhtar/stapy/blob/master/tests.py) file.
 
 ### `inferential.py`
-Coming soon.
+Contains functions related to Inferential Statistics, comprising:
+- approximate margin of error
+- confidence intervals
+
+### Usage
+Import entire module
+```py
+from inferential import *
+```
+Or, a function in the module
+```py
+from inferential import get_confidence_interval
+```
+And use by calling the functions.
+```py
+>>> xbar, sigma, n, z_star = 40, 16.04, 35, 1.96
+>>> get_confidence_interval(xbar, sigma, n, z_star)
+(34.6859404956286, 45.3140595043714)
+```
 
 ## License
 [MIT License](https://github.com/rafi007akhtar/stapy/blob/master/LICENSE)
