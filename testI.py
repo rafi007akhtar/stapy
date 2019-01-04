@@ -17,4 +17,13 @@ print(f"Confidence interval for this score: {CI}")
 
 critical = 1.96
 CI = get_confidence_interval(xbar, SD, n, critical)
-print(f"Exact confidence interval = {CI}")
+print(f"Exact confidence interval: {CI}")
+
+n = 250  # number of users increased
+CI = get_confidence_interval(xbar, SD, n, critical)
+print(f"New confidence interval: {CI}")
+
+### 98 % confidence level
+critical = 2.33
+CI = get_confidence_interval(xbar, SD, n, critical)
+print(f"Confidence interval for 98%: {CI}")
