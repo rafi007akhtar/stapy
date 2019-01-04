@@ -13,9 +13,9 @@ def error_margin_approx(z_star, sigma, n):
 
 	Parameters
 	----------
-	> z_star: the critical score of the confidence level
-	> sigma: the standard deviation of the population
-	> n: the size of the sample
+	> z_star: the critical score of the confidence level 
+	> sigma: the standard deviation of the population  
+	> n: the size of the sample 
 
 	Returns
 	-------
@@ -23,15 +23,30 @@ def error_margin_approx(z_star, sigma, n):
 	"""
 	return z_star * (sigma / (n ** 0.5))
 
+def error_margin_sample(z_star, SE):
+	"""
+	Get the margin of error of a sampling distribution.
+
+	Parameters
+	----------
+	> z_star: the critical score of the confidence level
+	> SE: the standard error of the sample
+
+	Returns
+	-------
+	The margin of error, given by z_star/SE.
+	"""
+	return z_star / SE
+
 def get_confidence_interval(xbar, sigma, n, z_star):
 	"""
 	Get the confidence interval of the mean paramater of a distribution.
 
 	Parameters
 	----------
-	> xbar: mean of the sample
-	> sigma: standard deviation of the population
-	> n: size of the sample
+	> xbar: mean of the sample  
+	> sigma: standard deviation of the population 
+	> n: size of the sample  
 	> z_star: critical score of the confidence level
 
 	Returns
@@ -46,6 +61,6 @@ def get_confidence_interval(xbar, sigma, n, z_star):
 	up = xbar + error  # upper range val
 
 	return (low, up)
-
+	
 
 
