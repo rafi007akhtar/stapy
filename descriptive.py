@@ -339,6 +339,9 @@ def get_area(z):
     Parameter: the z-score whose proportion is needed to be calculated (valid upto 2 decimal places).
     Returns: area under normal curve for x <= z.
     """
+    if z < -3.4 or z > 3.4:  # probability is too low, approaches zero
+        return 0
+        
     try:
         if z < 0:
             z = (-1 * z)
