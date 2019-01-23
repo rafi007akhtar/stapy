@@ -65,16 +65,16 @@ def get_confidence_interval(xbar, sigma, n, z_star):
 
 ### HYPOTHESIS TESTING ###
 
-def H0(significance = 5, mean_tuple, z_tuple = None):
+def H0(mean_tuple, z_tuple = None, significance = 5):
 	"""
 	Accept or reject the null hypothesis H0
 
 	Parameters
 	----------
-	> significance: the minimum difference between the means for accepting the null
 	> mean_tuple: a tuple containing means before and after intervention (mu, muI)
 	> z_tuple: a tuple contianing values of (z, z_star)
 	Provide any one of the required tuples. 
+	> significance: the minimum difference between the means for accepting the null
 
 	Returns
 	-------
@@ -96,7 +96,7 @@ def H0(significance = 5, mean_tuple, z_tuple = None):
 	return False  # reject the null
 
 
-def HA(significance = 5, mean_tuple, z_tuple = None):
+def HA(mean_tuple, z_tuple = None, significance = 5):
 	"""
 	Accept or reject the alternative hypothesis HA
 
@@ -114,8 +114,8 @@ def HA(significance = 5, mean_tuple, z_tuple = None):
 	"""
 
 	# accepting the alternative hypothesis means rejecting the null
-	if not H0(significance, mean_tuple, z_tuple):
-		return False
-	return True
+	if not H0(mean_tuple, z_tuple, significance):
+		return True
+	return False
 
 
