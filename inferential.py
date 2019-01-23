@@ -61,6 +61,61 @@ def get_confidence_interval(xbar, sigma, n, z_star):
 	up = xbar + error  # upper range val
 
 	return (low, up)
+
+
+### HYPOTHESIS TESTING ###
+
+def H0(significance = 5, mean_tuple, z_tuple = None):
+	"""
+	Accept or reject the null hypothesis H0
+
+	Parameters
+	----------
+	> significance: the minimum difference between the means for accepting the null
+	> mean_tuple: a tuple containing means before and after intervention (mu, muI)
+	> z_tuple: a tuple contianing values of (z, z_star)
+	Provide any one of the required tuples. 
+
+	Returns
+	-------
+	True -> if it accepts the null
+	False -> if it rejects the null
+	"""
 	
+	if z_tuple:
+		z, z_star = z_tuple
+		if abs(z) > abs(z_star):
+			# mean lies within the critical region
+			return False  # reject the null
+		return True  # accept the null
+	
+	# else, for mean-tuple
+	mean, meanI = mean_tuple
+	if abs(mean-meanI) > 5:
+		return True  # accept the null
+	return False  # reject the null
+
+
+def HA(significance = 5, mean_tuple, z_tuple = None):
+	"""
+	Accept or reject the alternative hypothesis HA
+
+	Parameters
+	----------
+	> significance: the minimum difference between the means for rejecting HA
+	> mean_tuple: a tuple containing means before and after intervention (mu, muI)
+	> z_tuple: a tuple contianing values of (z, z_star)
+	Provide any one of the required tuples. 
+
+	Returns
+	-------
+	True -> if it accepts HA
+	False -> if it rejects HA
+	"""
+
+	# accepting the alternative hypothesis means rejecting the null
+	if not H0(significance, mean_tuple, z_tuple):
+		return False
+	return True
 
 
