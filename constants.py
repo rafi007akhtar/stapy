@@ -59,7 +59,7 @@ z_table = [0.5, 0.50399, 0.50798, 0.51197, 0.51595, 0.51994, 0.52392, 0.5279, 0.
 # t-table
 from utilities import Table
 
-names = ["df", .25, .20, .15, .10, .05, .025, .02, .01, .005, .0025, .001, .0005]
+names = ["dof", .25, .20, .15, .10, .05, .025, .02, .01, .005, .0025, .001, .0005]
 
 rows = [
 	[1, 1.000, 1.376, 1.963, 3.078, 6.314, 12.71, 15.89,31.82, 63.66, 127.3, 318.3, 636.6],
@@ -103,7 +103,9 @@ rows = [
 
 obj = Table(names, rows)
 t_table = obj.make_table()
-obj.show_table(t_table)
+dof = obj.select(t_table, "dof", 12)
+# obj.show_table(dof)  # uncomment to see the table
+# t = obj.project()
 
 
 
