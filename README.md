@@ -4,7 +4,7 @@ Python package containing functions implemented for descriptive and inferential 
 
 Presently, this package is a work in progress. I will add to this package as I further my study in statistics.
 
-As of now, I have only touched topics on Descriptive Statistics. Once that is done, I hope to cover Inferential as well.
+As of now, I have more-or-less covered all topics on Descriptive Statistics, though room for improvement is ever-existent. I have finally touched upon Inferential Statistics, and currently am working to finish it soon.
 
 ## Modules in this package
 
@@ -41,12 +41,14 @@ And use them as you like:
 [2.125, 0.425, -2.5, -0.75]
 ```
 
-More on the use of this module is provided in the [tests.py](https://github.com/rafi007akhtar/stapy/blob/master/tests.py) file.
+More on the use of this module is provided in the [testsD.py](https://github.com/rafi007akhtar/stapy/blob/master/testsD.py) file.
 
-### `inferential.py`
+### [`inferential.py`](https://github.com/rafi007akhtar/stapy/blob/master/inferential.py)
 Contains functions related to Inferential Statistics, comprising:
 - approximate margin of error
 - confidence intervals
+- hypothses testing
+- t-tests
 
 ### Usage
 Import entire module
@@ -63,6 +65,8 @@ And use by calling the functions.
 >>> get_confidence_interval(xbar, sigma, n, z_star)
 (34.6859404956286, 45.3140595043714)
 ```
+
+More on the use of this module is provided in the [testI.py](https://github.com/rafi007akhtar/stapy/blob/master/testI.py) file.
 
 ## License
 [MIT License](https://github.com/rafi007akhtar/stapy/blob/master/LICENSE)
