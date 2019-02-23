@@ -17,7 +17,7 @@ class Table:
 		names = table[0]
 		ind = 0
 		for name in names:
-			if name is attr: break
+			if name == attr: break
 			ind += 1
 		
 		results = [] # tuples containing the results
@@ -35,7 +35,7 @@ class Table:
 		# first, find the index of attr in table
 		ind = 0
 		for attrs in table[0]:
-			if attrs is attr: break
+			if attrs == attr: break
 			ind += 1
 		
 		# now, append all elements in index ind in the given tuples
