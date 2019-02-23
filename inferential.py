@@ -124,6 +124,42 @@ def get_dof(n):
 	"""
 	return n - 1
 
+from constants import t_table
+from utilities import Table
+def t_test(dof, alpha, tails=1):
+	"""
+	Perform one- or two-tailed t-test on a sample, and get the t-critical value.
+
+	Parameters
+	----------
+	> dof: degrees of freedom
+	> alpha: the alpha level, or tail-probability; MUST be one of the following values:
+		[.25, .20, .15, .10, .05, .025, .02, .01, .005, .0025, .001, .0005]
+	> tails: by default 1, for 1-tailed t-test; supply 2 for 2-tailed t-test
+
+	Returns
+	--------
+	The t-critical value for the given parameters, or -1 in case of an error.
+	"""
+
+	# perform sanity checks
+	if alpha > 1 or alpha < 0 or (str(tails) not in "12"):
+		return -1
+	
+	# halve the probability for two-tailed test
+	if tails == 2:
+		alpha /= 2
+
+	# at first, find the tuple with the given dof
+	obj = Table([], [])
+	dof_row = obj.select(t_table, "dof", dof)
+
+	# now, get the column with probability alpha, and extract the value from it
+	t_critical = obj.project(dof_row, alpha)[1][0]
+
+	# finally, return the critical value
+	return t_critical
+
 
 
 
