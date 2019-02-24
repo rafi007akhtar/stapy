@@ -118,9 +118,20 @@ def HA(mean_tuple, z_tuple = None, significance = 5):
 		return True
 	return False
 
+
+### T-TESTS ###
+
 def get_dof(n):
 	"""
 	Get the degrees of freedom from sample size n.
+
+	Parameter
+	---------
+	n: the sample size
+
+	Returns
+	-------
+	The degrees of freedom for sample size n
 	"""
 	return n - 1
 
