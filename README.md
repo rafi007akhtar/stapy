@@ -48,6 +48,7 @@ Contains functions related to Inferential Statistics, comprising:
 - approximate margin of error
 - confidence intervals
 - hypothses testing
+- t-statistics
 - t-tests
 
 ### Usage
