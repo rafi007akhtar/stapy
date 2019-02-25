@@ -121,13 +121,36 @@ def HA(mean_tuple, z_tuple = None, significance = 5):
 
 ### T-TESTS ###
 
+def get_t_stat(xbar, mu0, SE, s = None, n = None):
+	"""
+	Get the t-statistic or simply, t for a t-distribution.
+
+	Parameters
+	----------
+	> xbar: mean of sample from the population
+	> mu0: mean of the current population
+	> SE: the standard error of the t-distribution; 
+		  if supplied as None, it will be calculated from the below two params
+	> s (optional): standard deviation of the sample, obtained from bessel's correction
+	> n (optional): size of the sample
+
+	Returns
+	-------
+	The t-statistic, given by (xbar - mu0) / SE where SE = s/sqrt(n)
+	"""
+
+	if not SE:
+		SE = s / (n**0.5)
+	
+	return (xbar - mu0) / SE
+
 def get_dof(n):
 	"""
 	Get the degrees of freedom from sample size n.
 
 	Parameter
 	---------
-	n: the sample size
+	> n: the sample size
 
 	Returns
 	-------
