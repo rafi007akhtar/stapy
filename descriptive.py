@@ -163,7 +163,7 @@ def get_IQR(distribution, quartiles = None):
     the inter-quartile range (Q3-Q1) of a distribution.
     """
 
-    if  not quartiles:
+    if not quartiles:
         quartiles = get_quartiles(distribution)
     return quartiles["Q3"] - quartiles["Q1"]
 
@@ -397,7 +397,7 @@ def get_samples(population, n):
     n_batches = int(len(population) / n)  # number of batches
     pos = 0
 
-    for i in range(n_batches):
+    for _ in range(n_batches):
         sample = population[pos:pos+n]
         samples.append(sample)
         pos = pos + n
