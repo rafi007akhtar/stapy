@@ -71,3 +71,16 @@ if t_test(t, t_critical):
 else:
     print(f"t-test for t value {t} and critical value {t_critical} has rejected the null")
 
+## cohen's d
+from descriptive import get_mean, shuffle, get_SD
+population = [
+    38946, 43420, 49191, 50432, 50557, 
+    52580, 53595, 54135, 60181, 10000000
+]
+shuffle(population)
+sample = population[:3]
+xbar = get_mean(sample)
+mu = get_mean(population)
+s = get_SD(sample)
+d = cohens_d(xbar, mu, s)
+print(f"The sample with mean {xbar} and SD {s} is {d} SD's away from population mean {mu}")

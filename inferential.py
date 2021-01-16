@@ -214,4 +214,19 @@ def t_test(t_statistic, t_critical):
 	# when t is -ve
 	return t_statistic > t_critical
 
+def cohens_d(xbar, mu, s):
+	"""
+	Returns Cohen's d for a sample.
 
+	Parameters
+	----------
+	> xbar: mean of the sample
+	> mu: mean of the population
+	> s: standard distribution of the sample
+
+	Returns
+	-------
+	Cohen's d, or the number of standard deviations the sample mean is away from the population mean
+	"""
+
+	return (xbar - mu) / s
