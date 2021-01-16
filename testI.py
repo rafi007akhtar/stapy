@@ -49,6 +49,8 @@ else:
 print()
 
 # t-tests
+
+## t-statistic
 xbar = 6.47
 s = 0.4
 n = 500
@@ -62,3 +64,10 @@ dof = 12
 n = 30
 t_critical = get_t_critical(get_dof(n), alpha, tails=2)
 print(f"t-critical value for alpha level {alpha} and sample size {n} = {t_critical}")
+
+## t-test
+if t_test(t, t_critical):
+    print(f"t-test for t value {t} and critical value {t_critical} has accepted the null")
+else:
+    print(f"t-test for t value {t} and critical value {t_critical} has rejected the null")
+

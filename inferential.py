@@ -194,6 +194,24 @@ def get_t_critical(dof, alpha, tails=1):
 	# finally, return the critical value
 	return t_critical
 
+def t_test(t_statistic, t_critical):
+	"""
+	Accept or reject the null hypothesis
 
+	Parameters
+	----------
+	> t_statistic: the t value for the distribution
+	> t_critical: the t* or t-critical value
+
+	Returns
+	-------
+	`True` if null is accepted; `False` if rejected
+	"""
+	# when t is +ve
+	if  t_statistic >= 0:
+		return t_critical <= t_statistic
+	
+	# when t is -ve
+	return t_statistic > t_critical
 
 
