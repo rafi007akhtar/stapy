@@ -160,7 +160,7 @@ def get_dof(n):
 
 from constants import t_table
 from utilities import Table
-def t_test(dof, alpha, tails=1):
+def get_t_critical(dof, alpha, tails=1):
 	"""
 	Perform one- or two-tailed t-test on a sample, and get the t-critical value.
 

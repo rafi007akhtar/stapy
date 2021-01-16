@@ -60,5 +60,5 @@ print(f"t-statistic for these parameters is {t}")
 alpha = 0.05
 dof = 12
 n = 30
-t_critical = t_test(get_dof(n), alpha, tails=2)
+t_critical = get_t_critical(get_dof(n), alpha, tails=2)
 print(f"t-critical value for alpha level {alpha} and sample size {n} = {t_critical}")
