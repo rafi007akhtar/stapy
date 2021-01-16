@@ -216,7 +216,7 @@ def t_test(t_statistic, t_critical):
 
 def cohens_d(xbar, mu, s):
 	"""
-	Returns Cohen's d for a sample.
+	Get the Cohen's d for a sample.
 
 	Parameters
 	----------
@@ -230,3 +230,39 @@ def cohens_d(xbar, mu, s):
 	"""
 
 	return (xbar - mu) / s
+
+def get_CI_percent(alpha):
+	"""
+	Get the confidence interval in percentage
+
+	Parameter
+	----------
+	> alpha: the alpha level for the test (in percentage)
+	
+	Returns
+	-------
+	The confidence interval in percentage
+	"""
+	
+	return 100 - alpha
+
+def get_CI_for_t_distribution(xbar, t_critical, s, n):
+	"""
+	Get the confidence interval for a t-distribution
+
+	Parameters
+	----------
+	> xbar: mean of the sample
+	> t_critical: t-critical value for the distribution
+	> s: sample standard distribution
+	> n: size of the sample
+
+	Returns
+	-------
+	The confidence interval of the t-distribution in absolute value (not percentage)
+	"""
+
+	low = xbar - (t_critical * s) / (n ** 0.5)
+	up = xbar + (t_critical * s) / (n ** 0.5)
+	return (low, up)
+

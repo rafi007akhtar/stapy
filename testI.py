@@ -84,3 +84,14 @@ mu = get_mean(population)
 s = get_SD(sample)
 d = cohens_d(xbar, mu, s)
 print(f"The sample with mean {xbar} and SD {s} is {d} SD's away from population mean {mu}")
+
+## confidence interval
+alpha = 5  # in percent
+print(f"The CI for alpha rate of {alpha}% is {get_CI_percent(alpha)}%")
+alpha = alpha / 100  # absolute value
+xbar = 1700
+s = 200
+n = 100
+t_critical = 1.984
+CI = get_CI_for_t_distribution(xbar, t_critical, s, n)
+print(f"The CI for the given t-distribution is {CI}")
