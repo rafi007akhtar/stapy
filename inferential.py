@@ -266,3 +266,26 @@ def get_CI_for_t_distribution(xbar, t_critical, s, n):
 	up = xbar + (t_critical * s) / (n ** 0.5)
 	return (low, up)
 
+def get_margin_of_error(CI, t_critical=None, s=None, n=None):
+	"""
+	Get the margin of error for a t-distribution, directly or from the CI
+
+	Parameters
+	----------
+	> CI: confidence interval of the t-distribution (if this is supplied, skip the rest)
+	> t_critical: t-critical value for the distribution (supply if CI is set to `None`)
+	> s: sample standard deviation (supply if CI is set to `None`)
+	> n: size of the sample (supply if CI is set to `None`)
+
+	Returns
+	-------
+	The margin of error of the t-distribution
+	"""
+
+	if not CI:
+		return t_critical * s / (n ** 0.5)
+
+	# if CI is supplied, compute its absolute half
+	low, up = CI
+	return (up - low) / 2
+

@@ -95,3 +95,5 @@ n = 100
 t_critical = 1.984
 CI = get_CI_for_t_distribution(xbar, t_critical, s, n)
 print(f"The CI for the given t-distribution is {CI}")
+print(f"margin of error for this CI = {get_margin_of_error(CI)} from the CI")
+print(f"margin of error for this CI = {get_margin_of_error(None, t_critical, s, n)} when computed directly")
