@@ -49,6 +49,9 @@ Contains functions related to Inferential Statistics, comprising:
 - confidence intervals
 - hypothses testing
 - t-statistics
+- t-critical value
+- Cohen's d
+- margin of error
 - t-tests
 
 ### Usage

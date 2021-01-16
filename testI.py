@@ -85,7 +85,7 @@ s = get_SD(sample)
 d = cohens_d(xbar, mu, s)
 print(f"The sample with mean {xbar} and SD {s} is {d} SD's away from population mean {mu}")
 
-## confidence interval
+## margin of error
 alpha = 5  # in percent
 print(f"The CI for alpha rate of {alpha}% is {get_CI_percent(alpha)}%")
 alpha = alpha / 100  # absolute value
