@@ -53,6 +53,7 @@ Contains functions related to Inferential Statistics, comprising:
 - Cohen's d
 - margin of error
 - t-tests
+- r<sup>2</sup> effective size measure
 
 ### Usage
 Import entire module
