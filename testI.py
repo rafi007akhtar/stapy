@@ -97,3 +97,9 @@ CI = get_CI_for_t_distribution(xbar, t_critical, s, n)
 print(f"The CI for the given t-distribution is {CI}")
 print(f"margin of error for this CI = {get_margin_of_error(CI)} from the CI")
 print(f"margin of error for this CI = {get_margin_of_error(None, t_critical, s, n)} when computed directly")
+
+## effective size measure
+t, n = -2.5, 25
+dof = get_dof(n)
+r_squared = get_r_squared(t, dof)
+print(f"The effective measure as r-squared for t-statisitc of {t} having {dof} degrees of freedom is {r_squared}")

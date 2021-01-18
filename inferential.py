@@ -289,3 +289,20 @@ def get_margin_of_error(CI, t_critical=None, s=None, n=None):
 	low, up = CI
 	return (up - low) / 2
 
+def get_r_squared(t, dof):
+	"""
+	Get the r-squared value for effective size measure.
+
+	Parameters
+	----------
+	> t: the t-statistic for the distribution
+	> dof: the degrees of freedom of the sample
+
+	Returns
+	-------
+	The r_squared value for effective size measure
+	"""
+
+	t_squared = t * t
+	return t_squared / (t_squared + dof)
+
