@@ -306,3 +306,44 @@ def get_r_squared(t, dof):
 	t_squared = t * t
 	return t_squared / (t_squared + dof)
 
+from descriptive import get_mean
+def get_dependent_stats(x1, x2):
+	"""
+	Get the following statistics for two dependent distributions.
+	1. First sample and sample mean
+	2. Second sample and sample mean
+	3. Difference of both the samples and difference mean
+
+	Parameters
+	----------
+	> x1: an array containing elements of the first distribution
+	> x2: an array containing elements of the second distribution
+
+	Returns a dictionary with the following key-value pairs.
+	{
+		'first_sample': x1,  # the array `x1`
+		'first_sample_mean': mean1,  # mean of the first sample
+		'second_sample': x2,  # the array `x2`
+		'second_sample_mean': mean2,  # mean of the second sample
+		'difference': D,  # an array containing the differences between each corresponding element of `x1` and `x2`
+		'mean_difference': mean_diff  # mean of the above `difference` array
+	}
+	"""
+
+	D = []
+	l = len(x1)
+	for i in range(l):
+		D.append(x2[i] - x1[i])
+
+	mean1 = get_mean(x1)
+	mean2 = get_mean(x2)
+	mean_diff = get_mean(D)
+
+	return ({
+		"first_sample": x1,
+		"first_sample_mean": mean1,
+		"second_sample": x2,
+		"second_sample_mean": mean2,
+		"difference": D,
+		"mean_difference": mean_diff
+	})

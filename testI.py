@@ -103,3 +103,17 @@ t, n = -2.5, 25
 dof = get_dof(n)
 r_squared = get_r_squared(t, dof)
 print(f"The effective measure as r-squared for t-statisitc of {t} having {dof} degrees of freedom is {r_squared}")
+
+## dependent sample
+sample_pre = [8,7,6,9,10,5,7,11,8,7]
+sample_post = [5,6,4,6,5,3,2,9,4,4]
+dependent_stats =  get_dependent_stats(sample_pre, sample_post)
+print(f"first sample: {sample_pre} \nfirst sample mean: {dependent_stats['first_sample_mean']} \nsecond sample: {sample_post} \nsecond sample mean: {dependent_stats['second_sample_mean']} \ndifference: {dependent_stats['difference']} \nmean difference: {dependent_stats['mean_difference']}")
+s = 1.33
+d = (dependent_stats['first_sample_mean'] - dependent_stats['second_sample_mean']) / s
+print(f"Cohen's d: {d}")
+xbar = dependent_stats['mean_difference']
+n = 10
+t_critical = 2.262
+CI = get_CI_for_t_distribution(xbar, t_critical, s, n)
+print(f"CI: {CI}")
