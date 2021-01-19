@@ -58,6 +58,8 @@ mu0 = 6.07
 t = get_t_stat(xbar, mu0, None, s, n)
 print(f"t-statistic for these parameters is {t}")
 
+print()
+
 ## t-critical
 alpha = 0.05
 dof = 12
@@ -65,11 +67,15 @@ n = 30
 t_critical = get_t_critical(get_dof(n), alpha, tails=2)
 print(f"t-critical value for alpha level {alpha} and sample size {n} = {t_critical}")
 
+print()
+
 ## t-test
 if t_test(t, t_critical):
     print(f"t-test for t value {t} and critical value {t_critical} has accepted the null")
 else:
     print(f"t-test for t value {t} and critical value {t_critical} has rejected the null")
+
+print()
 
 ## cohen's d
 from descriptive import get_mean, shuffle, get_SD
@@ -85,6 +91,8 @@ s = get_SD(sample)
 d = cohens_d(xbar, mu, s)
 print(f"The sample with mean {xbar} and SD {s} is {d} SD's away from population mean {mu}")
 
+print()
+
 ## margin of error
 alpha = 5  # in percent
 print(f"The CI for alpha rate of {alpha}% is {get_CI_percent(alpha)}%")
@@ -98,11 +106,15 @@ print(f"The CI for the given t-distribution is {CI}")
 print(f"margin of error for this CI = {get_margin_of_error(CI)} from the CI")
 print(f"margin of error for this CI = {get_margin_of_error(None, t_critical, s, n)} when computed directly")
 
+print()
+
 ## effective size measure
 t, n = -2.5, 25
 dof = get_dof(n)
 r_squared = get_r_squared(t, dof)
 print(f"The effective measure as r-squared for t-statisitc of {t} having {dof} degrees of freedom is {r_squared}")
+
+print()
 
 ## dependent sample
 sample_pre = [8,7,6,9,10,5,7,11,8,7]
