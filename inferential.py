@@ -347,3 +347,21 @@ def get_dependent_stats(x1, x2):
 		"difference": D,
 		"mean_difference": mean_diff
 	})
+
+class IndependentSamples:
+	"""
+	This class is created to provide static methods that perform calculations needed for independent samples.
+	"""
+
+	@staticmethod
+	def get_t(xbar1, xbar2, SE):
+		"""
+		Get the t-statisitc for the independent samples.
+
+		Parameters
+		----------
+		> xbar1: Mean of the first sample
+		> xbar2: mean of the second sample
+		> SE: standard error of the independent samples
+		"""
+		return (xbar1 - xbar2) / SE
