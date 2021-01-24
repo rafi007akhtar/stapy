@@ -348,6 +348,7 @@ def get_dependent_stats(x1, x2):
 		"mean_difference": mean_diff
 	})
 
+from descriptive import bessel_correction
 class IndependentSamples:
 	"""
 	This class is created to provide static methods that perform calculations needed for independent samples.
@@ -365,3 +366,13 @@ class IndependentSamples:
 		> SE: standard error of the independent samples
 		"""
 		return (xbar1 - xbar2) / SE
+
+	@staticmethod
+	def get_sample_SD(distribution):
+		bessel = bessel_correction(distribution)
+		return bessel["Sample SD"]
+	
+	@staticmethod
+	def get_sample_variance(distribution):
+		bessel = bessel_correction(distribution)
+		return bessel["Sample variance"]
