@@ -361,18 +361,81 @@ class IndependentSamples:
 
 		Parameters
 		----------
-		> xbar1: Mean of the first sample
+		> xbar1: mean of the first sample
 		> xbar2: mean of the second sample
 		> SE: standard error of the independent samples
+
+		Returns
+		-------
+		The t-statistic of the independent samples
 		"""
+
 		return (xbar1 - xbar2) / SE
 
 	@staticmethod
 	def get_sample_SD(distribution):
+		"""
+		Get the standard deviation of an independent sample.
+		NOTE: This is a sample, so Bessel's correction is applied.
+
+		Parameters
+		----------
+		> distribution: the array containing all the values of the sample distribution.
+
+		Returns
+		-------
+		The sample SD with Bessel's correction applied
+		"""
 		bessel = bessel_correction(distribution)
 		return bessel["Sample SD"]
 	
 	@staticmethod
 	def get_sample_variance(distribution):
+		"""
+		Get the variance of an independent sample.
+		NOTE: This is a sample, so Bessel's correction is applied.
+
+		Parameters
+		----------
+		> distribution: the array containing all the values of the sample distribution.
+
+		Returns
+		-------
+		The sample variance with Bessel's correction applied
+		"""
+
 		bessel = bessel_correction(distribution)
 		return bessel["Sample variance"]
+
+	@staticmethod
+	def get_t(xbar1, xbar2, SE):
+		"""
+		Get the t-statistic for the independent samples
+
+		Parameters
+		----------
+		> xbar1: mean of the first distribution sample
+		> xbar2: mean of the second distribution sample
+		> SE: sample error of both the independent samples
+
+		Returns
+		-------
+		The t-statistic of the independent samples
+		"""
+		return (xbar1 - xbar2) / SE
+	
+	@staticmethod
+	def get_dof(n1, n2):
+		"""
+		Get the degress of freedom of the independent samples
+
+		Paraneters
+		----------
+		> n1: number of items in the first sample
+		> n2: number of items in the second sample
+
+		Returns
+		-------
+		The combined degrees of freedom of both the independent samples
+		"""
+		return n1 + n2 - 2
