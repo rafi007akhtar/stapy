@@ -439,3 +439,42 @@ class IndependentSamples:
 		The combined degrees of freedom of both the independent samples
 		"""
 		return n1 + n2 - 2
+
+	@staticmethod
+	def get_samples_SD(s1, s2):
+		"""
+		Get the combined standard deviation of both the independent samples
+
+		Parameters
+		----------
+		> s1: the standard deviation of the first independent sample
+		> x2: the standard deviation of the second independent sample
+
+		Returns
+		-------
+		The combined standard deviation of both the independent samples
+		"""
+
+		return (s1*s1 + s2*s2) ** 0.5
+	
+	@staticmethod
+	def get_standard_error(s1, s2, n1, n2):
+		"""
+		Get the standard error of the independent samples
+
+		Parameters
+		----------
+		> s1: the standard deviation of the first sample
+		> s2: the standard deviation of the second sample
+		> n1: the size of the first sample
+		> n2: the size of the second sample
+
+		Returns
+		-------
+		The standard error of the independent samples
+		"""
+
+		SE1 = (s1 * s1) / n1
+		SE2 = (s2 * s2) / n2
+		return (SE1 + SE2) ** 0.5
+	
