@@ -55,6 +55,7 @@ Contains functions related to Inferential Statistics, comprising:
 - t-tests
 - r<sup>2</sup> effective size measure
 - dependent samples
+- independent samples
 
 ### Usage
 Import entire module
