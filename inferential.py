@@ -481,7 +481,7 @@ class IndependentSamples:
 		"""
 		
 		if xbar1 < xbar2:
-			xbar, xbar2 = xbar2, xbar1
+			xbar1, xbar2 = xbar2, xbar1
 		
 		xdiff = xbar1 - xbar2
 
@@ -491,14 +491,16 @@ class IndependentSamples:
 		return (down, up)
 	
 	@staticmethod
-	def pooled_variance(distribution1, distribution2):
+	def pooled_variance(distribution1, distribution2, verbose=False):
 		"""
 		Get the pooled variance of the distribution, where the sample sizes are not similar.
 
 		Parameters
 		----------
-		distribution1: an array of integers containing the distribution values of the first sample
-		distribution2: an array of integers containing the distribution values of the second sample
+		> distribution1: an array of integers containing the distribution values of the first sample
+		> distribution2: an array of integers containing the distribution values of the second sample
+		> verbose (optional): a boolean that prints means and sum of squares of the samples before returning pooled variance if `True`; 
+							print nothing if `False`
 
 		Returns
 		-------
@@ -515,6 +517,12 @@ class IndependentSamples:
 
 		n1 = len(distribution1)
 		n2 = len(distribution2)
+
+		if verbose:
+			print(f"Mean of sample 1: {xbar1}")
+			print(f"Sum of squares for sample 1: {ssx}")
+			print(f"Mean of sample 2: {xbar2}")
+			print(f"Sum of squares for sample 2: {ssy}")
 
 		return (ssx + ssy) / (get_dof(n1) + get_dof(n2))
 	

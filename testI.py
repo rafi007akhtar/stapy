@@ -173,3 +173,10 @@ sp2 = IndependentSamples.pooled_variance(x, y)
 print(f"x: {x} \ny: {y} \npooled variance for these two distributions: {sp2}")
 SE = IndependentSamples.corrected_SE(sp2, len(x), len(y))
 print(f"And the corrected SE is {SE}")
+
+print()
+x = [2, -3, 5, 4, 7]
+y = [10, 13, 15, 10]
+print(f"x = {x} \ny = {y}")
+sp2 = IndependentSamples.pooled_variance(x, y, True)
+print(f"pooled variance = {sp2}")
