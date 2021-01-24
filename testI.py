@@ -129,3 +129,23 @@ n = 10
 t_critical = 2.262
 CI = get_CI_for_t_distribution(xbar, t_critical, s, n)
 print(f"CI: {CI}")
+
+print()
+
+## independent sample
+A = [40, 36, 20, 32, 45, 28]
+B = [41, 39, 18, 23, 35]
+print(f"A: {A} \nB: {B}")
+sA = IndependentSamples.get_sample_SD(A)
+sB = IndependentSamples.get_sample_SD(B)
+print(f"The above samples have SDs as sA = {sA} and sB = {sB}")
+xbarA = get_mean(A)
+xbarB = get_mean(B)
+print(f"The above samples have means as xbarA = {xbarA} and xbarB = {xbarB}")
+SE = IndependentSamples.get_standard_error(sA, sB, len(A), len(B))
+t = IndependentSamples.get_t(xbarA, xbarB, SE)
+print(f"t = {t}")
+dof = IndependentSamples.get_dof(len(A), len(B))
+t_critical = get_t_critical(dof, 0.05, 2)
+print(f"dof = {dof} \nt* = {t_critical}")
+print(f"Do we reject the null? The answer is {t_test(t, t_critical)}.")

@@ -422,6 +422,7 @@ class IndependentSamples:
 		-------
 		The t-statistic of the independent samples
 		"""
+
 		return (xbar1 - xbar2) / SE
 	
 	@staticmethod
@@ -438,6 +439,7 @@ class IndependentSamples:
 		-------
 		The combined degrees of freedom of both the independent samples
 		"""
+
 		return n1 + n2 - 2
 
 	@staticmethod
