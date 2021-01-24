@@ -479,4 +479,31 @@ class IndependentSamples:
 		SE1 = (s1 * s1) / n1
 		SE2 = (s2 * s2) / n2
 		return (SE1 + SE2) ** 0.5
+
+	@staticmethod
+	def get_confidence_interval(xbar1, xbar2, t_critical, SE):
+		"""
+		Get the confidence interval of independent samples.
+
+		Parameters
+		----------
+		> xbar1: mean of the first sample
+		> xbar2: mean of the second sample
+		> t_critical: the t-critical value of the t-test
+		> SE: the standard error of the samples
+
+		Returns
+		-------
+		The confidence interval in a tuple `(down, up)` where `down` is the lower-limit, and `up` is the upper-limit.
+		"""
+		
+		if xbar1 < xbar2:
+			xbar, xbar2 = xbar2, xbar1
+		
+		xdiff = xbar1 - xbar2
+
+		down = xdiff - (t_critical * SE)
+		up = xdiff + (t_critical * SE)
+		
+		return (down, up)
 	
