@@ -355,24 +355,6 @@ class IndependentSamples:
 	"""
 
 	@staticmethod
-	def get_t(xbar1, xbar2, SE):
-		"""
-		Get the t-statisitc for the independent samples.
-
-		Parameters
-		----------
-		> xbar1: mean of the first sample
-		> xbar2: mean of the second sample
-		> SE: standard error of the independent samples
-
-		Returns
-		-------
-		The t-statistic of the independent samples
-		"""
-
-		return (xbar1 - xbar2) / SE
-
-	@staticmethod
 	def get_sample_SD(distribution):
 		"""
 		Get the standard deviation of an independent sample.
@@ -408,7 +390,7 @@ class IndependentSamples:
 		return bessel["Sample variance"]
 
 	@staticmethod
-	def get_t(xbar1, xbar2, SE):
+	def get_t(xbar1, xbar2, SE, mu_diff=0):
 		"""
 		Get the t-statistic for the independent samples
 
@@ -417,13 +399,14 @@ class IndependentSamples:
 		> xbar1: mean of the first distribution sample
 		> xbar2: mean of the second distribution sample
 		> SE: sample error of both the independent samples
+		> mu_difference: the difference in population parameters, expected to be 0 by
 
 		Returns
 		-------
 		The t-statistic of the independent samples
 		"""
 
-		return (xbar1 - xbar2) / SE
+		return (xbar1 - xbar2 - mu_diff) / SE
 	
 	@staticmethod
 	def get_dof(n1, n2):
@@ -507,3 +490,48 @@ class IndependentSamples:
 		
 		return (down, up)
 	
+	@staticmethod
+	def pooled_variance(distribution1, distribution2):
+		"""
+		Get the pooled variance of the distribution, where the sample sizes are not similar.
+
+		Parameters
+		----------
+		distribution1: an array of integers containing the distribution values of the first sample
+		distribution2: an array of integers containing the distribution values of the second sample
+
+		Returns
+		-------
+		The pooled variance of the samples
+		"""
+
+		xbar1 = get_mean(distribution1)
+		squares1 = [(xi - xbar1)**2 for xi in distribution1]
+		ssx = sum(squares1)
+
+		xbar2 = get_mean(distribution2)
+		squares2 = [(xi - xbar2)**2 for xi in distribution2]
+		ssy = sum(squares2)
+
+		n1 = len(distribution1)
+		n2 = len(distribution2)
+
+		return (ssx + ssy) / (get_dof(n1) + get_dof(n2))
+	
+	@staticmethod
+	def corrected_SE(sp2, n1, n2):
+		"""
+		Get the corrected standard error of the independent samples, with the help of the pooled variance.
+
+		Parameters
+		----------
+		> sp2: the pooled variance; in other words, the square of the pooled standard deviation
+		> n1: size of the first sample
+		> n2: size of the second sample
+
+		Returns
+		-------
+		The corrected standard error of the samples.
+		"""
+		inverse = (n1 + n2) / (n1 * n2)
+		return (inverse * sp2) ** 0.5

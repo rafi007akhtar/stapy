@@ -149,14 +149,27 @@ dof = IndependentSamples.get_dof(len(A), len(B))
 t_critical = get_t_critical(dof, 0.05, 2)
 print(f"dof = {dof} \nt* = {t_critical}")
 print(f"Do we reject the null? The answer is {t_test(t, t_critical)}.")
+
 print()
+
 xbar1 = 33.14
 xbar2 = 18
 SE = 15.72
 t_critical = 2.12
 CI = IndependentSamples.get_confidence_interval(xbar1, xbar2, t_critical, SE)
 print(f"For means {xbar1} and {xbar2}, t* as {t_critical} and SE as {SE}, the confidennce interval is {CI}")
+
+print()
+
 t = 0.96
 dof = 16
 r_squared = get_r_squared(t, dof)
 print(f"For t being {t} and dof being {dof}, r-squared is {r_squared}")
+
+print()
+x = [5, 6, 1, -4]
+y = [3, 7, 8]
+sp2 = IndependentSamples.pooled_variance(x, y)
+print(f"x: {x} \ny: {y} \npooled variance for these two distributions: {sp2}")
+SE = IndependentSamples.corrected_SE(sp2, len(x), len(y))
+print(f"And the corrected SE is {SE}")
