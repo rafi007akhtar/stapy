@@ -559,12 +559,122 @@ def number_of_tests_for_comparison(ns):
 
 	return (ns * (ns -1)) / 2
 
-def get_grand_mean(means):
+def get_grand_mean(samples):
 	"""
+	Get the grand mean for a number of samples, or a number of means.
+
+	Parameter
+	---------
+	> `samples`: A tuple containing a list of samples, or a list of means.
+		- If the lists are samples, send them like `get_grand_mean([1,2,3,...], [3,4,5,...], [4,5,6,6,7,....], ...)`
+		Here, each list contains all the values of that very sample.
+
+		- If the lists are the means of the samples, send them like `get_grand_mean([3], [2], [12], ....)`
+		Where each list should contain only one value, and that's the mean of its corresponding sample.
+	
+	Returns
+	-------
+	The grand mean for the means or the samples.
 	"""
+
 	N = 0
 	grand_sum = 0
-	for mean in means:
-		grand_sum += sum(mean)
-		N += len(mean)
+	for sample in samples:
+		grand_sum += sum(sample)
+		N += len(sample)
 	return grand_sum / N
+
+def sum_squared_between(samples):
+	"""
+	Get the sum of squares for between-group variability of the samples.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The sum of squares for between-group variability.
+	"""
+
+	xbarG = get_grand_mean(samples)  # grand mean
+	ss = 0  # sum of squares for between-group variability
+	for sample in samples:
+		xbarK = get_mean(sample)
+		n = len(sample)
+		ss += n * ((xbarK - xbarG) ** 2)
+	return ss
+
+def ms_between(samnples):
+	"""
+	Get the mean squared value for betweem-group variability of the samples.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The mean squared value for between-group variability.
+	"""
+
+	ss_bet = sum_squared_between(samnples)  # sum of squares
+	dof = len(samnples) - 1  # degrees of freedom
+	return ss_bet / dof
+
+from descriptive import get_SD, get_variance
+def sum_squared_within(samples):
+	"""
+	Get the sum of squares for within-group variability of the samples.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The sum of squares for within-group variability.
+	"""
+
+	ss = 0  # sum of squares for within-group variability
+	for sample in samples:
+		n = len(sample)
+		var = get_variance(sample, bessel=True)
+		ss += (n - 1) * var
+	return ss
+
+def ms_within(samples):
+	"""
+	Get the mean squared value for within-group variability of the samples.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The mean squared value for within-group variability.
+	"""
+
+	ss_with = sum_squared_within(samples)
+	k = len(samples)
+	N = sum([len(sample) for sample in samples])
+	dof = N - k
+	return ss_with / dof
+
+def get_f_statistic(samples):
+	"""
+	Get the f-statistic for the samples.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The f-statisitc for the samples.
+	"""
+
+	ms_bet = ms_between(samples)
+	ms_with = ms_within(samples)
+	return ms_bet / ms_with
