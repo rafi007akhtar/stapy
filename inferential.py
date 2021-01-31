@@ -543,3 +543,28 @@ class IndependentSamples:
 		"""
 		inverse = (n1 + n2) / (n1 * n2)
 		return (inverse * sp2) ** 0.5
+
+def number_of_tests_for_comparison(ns):
+	"""
+	Get the number of t-tests required to compare `ns` number of samples.
+
+	Parameter
+	---------
+	> ns: number of samples
+
+	Returns
+	-------
+	The number of t-tests required to compare those many samples
+	"""
+
+	return (ns * (ns -1)) / 2
+
+def get_grand_mean(means):
+	"""
+	"""
+	N = 0
+	grand_sum = 0
+	for mean in means:
+		grand_sum += sum(mean)
+		N += len(mean)
+	return grand_sum / N

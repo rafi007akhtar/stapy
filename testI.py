@@ -180,3 +180,20 @@ y = [10, 13, 15, 10]
 print(f"x = {x} \ny = {y}")
 sp2 = IndependentSamples.pooled_variance(x, y, True)
 print(f"pooled variance = {sp2}")
+
+print()
+
+# ANOVA
+
+## f-tests
+sample1 = [15, 12, 14, 11]
+sample2 = [39, 45, 48, 60]
+sample3 = [65, 45, 32, 38]
+mean1 = get_mean(sample1)
+mean2 = get_mean(sample2)
+mean3 = get_mean(sample3)
+print(f"Samples: \n1. {sample1} \n2. {sample2} \n3. {sample3}")
+print(f"Means: \n1. {mean1} \n2. {mean2} \n3. {mean3}")
+xbarg = get_grand_mean((sample1, sample2, sample3))
+print(f"The grand mean of these samples is {xbarg}")
+print(f"The mean of means these samples is {get_grand_mean(([mean1], [mean2], [mean3]))}")
