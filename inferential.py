@@ -605,6 +605,21 @@ def sum_squared_between(samples):
 		ss += n * ((xbarK - xbarG) ** 2)
 	return ss
 
+def dof_between(samples):
+	"""
+	Get the degrees of freedom for between-group variability.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The degrees of freedom for between-group variability.
+	"""
+
+	return len(samples) - 1
+
 def ms_between(samnples):
 	"""
 	Get the mean squared value for betweem-group variability of the samples.
@@ -619,7 +634,7 @@ def ms_between(samnples):
 	"""
 
 	ss_bet = sum_squared_between(samnples)  # sum of squares
-	dof = len(samnples) - 1  # degrees of freedom
+	dof = dof_between(samnples)  # degrees of freedom
 	return ss_bet / dof
 
 from descriptive import get_SD, get_variance
@@ -643,6 +658,23 @@ def sum_squared_within(samples):
 		ss += (n - 1) * var
 	return ss
 
+def dof_within(samples):
+	"""
+	Get the degrees of freedom for within-group variability.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The degrees of freedom for within-group variability.
+	"""
+
+	k = len(samples)  # number of samples
+	N = sum([len(sample) for sample in samples])
+	return N - k
+
 def ms_within(samples):
 	"""
 	Get the mean squared value for within-group variability of the samples.
@@ -657,9 +689,7 @@ def ms_within(samples):
 	"""
 
 	ss_with = sum_squared_within(samples)
-	k = len(samples)
-	N = sum([len(sample) for sample in samples])
-	dof = N - k
+	dof = dof_within(samples)
 	return ss_with / dof
 
 def get_f_statistic(samples):
