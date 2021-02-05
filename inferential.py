@@ -708,3 +708,33 @@ def get_f_statistic(samples):
 	ms_bet = ms_between(samples)
 	ms_with = ms_within(samples)
 	return ms_bet / ms_with
+
+def create_ANOVA_table(samples):
+	ss_bet = sum_squared_between(samples)
+	ss_with = sum_squared_within(samples)
+	dof_bet = dof_between(samples)
+	dof_with = dof_within(samples)
+	ms_bet = ms_between(samples)
+	ms_with = ms_within(samples)
+	f = get_f_statistic(samples)
+
+	results_row1 = {
+		"SS (between)": ss_bet,
+		"\tdof (between)": dof_bet, 
+		"\tMS (between)": ms_bet, 
+		"\tF": f
+	}
+
+	results_row2 = {
+		"SS (within)": ss_with,
+		"\tdof (within)": dof_with, 
+		"\t\tMS (within)": ms_with 
+	}
+
+	for item in results_row1.items():
+		print(f"{item[0]}: {item[1]}", end="")
+	print()
+	for item in results_row2.items():
+		print(f"{item[0]}: {item[1]}", end="")
+	print()
+	

@@ -207,3 +207,38 @@ ms_with = ms_within(samples)
 print(f"The mean squared values for these samples are {ms_bet} for between-group and {ms_with} for within-group variabilities")
 f = get_f_statistic(samples)
 print(f"The f-statistic for these samples is {f}")
+
+print()
+
+sample1 = [8, 7, 10, 6, 9]
+sample2 = [4, 6, 7, 4, 9]
+sample3 = [4, 4, 7, 2, 3]
+print(f"Samples: \n1. {sample1} \n2. {sample2} \n3. {sample3}")
+samples = (sample1, sample2, sample3)
+ss_bet = sum_squared_between(samples)
+print(f"ss between: {ss_bet}")
+ss_with = sum_squared_within(samples)
+print(f"ss within: {ss_with}")
+print(f"ms between: {ms_between(samples)}")
+print(f"ms between: {ms_within(samples)}")
+print(f"f-ratio: {get_f_statistic(samples)}")
+
+print()
+
+sampleA = [2, 4, 3]
+sampleB = [6, 5, 7]
+sampleC = [8, 9, 10]
+samples = sampleA + sampleB + sampleC
+print(f"Samples: \nA: {sampleA} \nB: {sampleB} \nC: {sampleC}")
+xbarG = get_grand_mean((sampleA, sampleB, sampleC))
+print(f"The grand mean of these samples is: {xbarG}")
+sigma_squared = sum([(s-xbarG)**2 for s in samples])
+print(f"sum = {sigma_squared}")
+samples = sampleA + sampleB + sampleC
+print(f"samples: {samples}")
+print()
+print("ANOVA Table:")
+create_ANOVA_table((sampleA, sampleB, sampleC))
+
+
+
