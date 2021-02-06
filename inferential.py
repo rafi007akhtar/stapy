@@ -710,6 +710,21 @@ def get_f_statistic(samples):
 	return ms_bet / ms_with
 
 def create_ANOVA_table(samples):
+	"""
+	Print the ANOVA table for a group of samples, in the following format:
+		SS (between): xx      dof (between): xx        MS (between): xx     F: xx
+		SS (within): xx       dof (within): xx         MS (within): xx
+	where 'xx' is the placeholder value for the variable on left-hand side.
+
+	Parameter
+	---------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	`void`
+	"""
+
 	ss_bet = sum_squared_between(samples)
 	ss_with = sum_squared_within(samples)
 	dof_bet = dof_between(samples)
@@ -737,4 +752,3 @@ def create_ANOVA_table(samples):
 	for item in results_row2.items():
 		print(f"{item[0]}: {item[1]}", end="")
 	print()
-	
