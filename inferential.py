@@ -752,3 +752,62 @@ def create_ANOVA_table(samples):
 	for item in results_row2.items():
 		print(f"{item[0]}: {item[1]}", end="")
 	print()
+
+def tukey_HSD(q_critical, ms_with, n):
+	"""
+	Get the Tukey's Honestly Significance Difference, given a few parameters.
+	Assumption: All samples have the same size.
+
+	Parameters
+	----------
+	> `q_critical`: The Studentized Range Statistic at a certain alpha level
+	> 'ms_with`: The mean squared value for within-group variability
+	> `n`: number of items in each sample
+
+	Returns
+	-------
+	The Tukey's HSD for the given parameters.
+	"""
+
+	return q_critical * ((ms_with / n) ** 0.5)
+
+def honestly_significant_samples(samples, q_critical, verbose=True):
+	"""
+	Get / print the honestly significant samples among the tuple of samples.
+	Assumption: All samples have the same size.
+
+	Parameters
+	----------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+	> `q_critical`: The Studentized Range Statistic at a certain alpha level
+	> `verbose`: a `bool` that governs whether or not the indices of significantly different samples be printed (defaulted to `True`)
+
+	Returns
+	-------
+	A list tuples where each tuple contains a pair of honestly significant means.
+	"""
+
+	ms_with = ms_within(samples)
+	n = len(samples[0])
+	# all samples must have the same size
+	k = len(samples)
+	for i in range(1, k):
+		if not len(samples[i]) == n:
+			raise "Samples do not have the same size"
+	THSD = tukey_HSD(q_critical, ms_with, n)  # Tukey's HSD
+
+	means = [get_mean(sample) for sample in samples]
+	significantly_different_means = []
+
+	for i in range(k - 1):
+		m1 = means[i]
+		for j in range(i+1, k):
+			m2 = means[j]
+			diff = m1 - m2
+			if diff < 0: diff = -1 * diff  # difference should always be +ve
+			if diff > THSD:
+				significantly_different_means.append((m1, m2))
+				if verbose:
+					print(f"Means of samples indexed {i} and {j} are honestly significantly different")
+	
+	return significantly_different_means

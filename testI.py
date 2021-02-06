@@ -240,5 +240,13 @@ print()
 print("ANOVA Table:")
 create_ANOVA_table((sampleA, sampleB, sampleC))
 
+print()
 
+q_critical = 4.34
+samples = (sampleA, sampleB, sampleC)
+THSD = tukey_HSD(q_critical, ms_within(samples), len(sampleA))
+print(f"Tukey's HSD for above samples is {THSD}")
+print("Honestly Significantly Different samples:")
+hss = honestly_significant_samples(samples, q_critical)
+print(f"The said means are: {hss}")
 
