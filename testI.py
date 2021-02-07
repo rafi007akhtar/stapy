@@ -276,3 +276,17 @@ xbarG = get_grand_mean(samples)
 print(f"Grand meam: {xbarG}")
 print("ANOVA Table")
 create_ANOVA_table(samples)
+
+print()
+
+sampleA = [-8, -11, -17, -9, -10, -5]
+sampleB = [12, 9, 16, 8, 15]
+sampleC = [0.5, 0, -1, 1.5, 0.5, -0.1, 0]
+print(f"Samples: \nA: {sampleA} \nB: {sampleB} \nC: {sampleC}")
+samples = (sampleA, sampleB, sampleC)
+xbarG = get_grand_mean(samples)
+print(f"Grand mean: {xbarG}")
+print("ANOVA table:")
+create_ANOVA_table(samples)
+eta_squared = get_eta_squared(samples)
+print(f"eta-squared: {eta_squared}")

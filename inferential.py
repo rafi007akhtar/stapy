@@ -829,3 +829,20 @@ def cohens_d_multiple(xbar1, xbar2, ms_with):
 
 	return (xbar1 - xbar2) / (ms_with ** 0.5)
 
+def get_eta_squared(samples):
+	"""
+	Get the eta-squared value of the samples (the explained variance)
+
+	Parameters
+	----------
+	> `samples`: a tuple of lists, where each list is a sample containing all the values of that sample
+
+	Returns
+	-------
+	The eta-squared value of the samples
+	"""
+
+	ss_bet = sum_squared_between(samples)
+	ss_with = sum_squared_within(samples)
+	ss_total = ss_bet + ss_with
+	return ss_bet / ss_total
