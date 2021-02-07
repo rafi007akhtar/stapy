@@ -811,3 +811,21 @@ def honestly_significant_samples(samples, q_critical, verbose=True):
 					print(f"Means of samples indexed {i} and {j} are honestly significantly different")
 	
 	return significantly_different_means
+
+def cohens_d_multiple(xbar1, xbar2, ms_with):
+	"""
+	Get the Cohen's-d value for a multiple comparison test.
+
+	Parameters
+	----------
+	> `xbar1`: the mean of the one of the samples in the test.
+	> `xbar2`: the mean of another of the samples in the test.
+	> `ms_with`: the mean-squared variability of the samples
+
+	Returns
+	-------
+	The Cohen's-d value for both the samples in the multiple comparison test.
+	"""
+
+	return (xbar1 - xbar2) / (ms_with ** 0.5)
+

@@ -249,4 +249,30 @@ print(f"Tukey's HSD for above samples is {THSD}")
 print("Honestly Significantly Different samples:")
 hss = honestly_significant_samples(samples, q_critical)
 print(f"The said means are: {hss}")
+means = [get_mean(sample) for sample in samples]
+m1, m2, m3 = means
+ms_with = ms_within(samples)
+d1 = cohens_d_multiple(m1, m2, ms_with)
+d2 = cohens_d_multiple(m2, m3, ms_with)
+d3 = cohens_d_multiple(m1, m3, ms_with)
+d_list = [d1, d2, d3]
+print(f"List of Cohen's d: {d_list}")
 
+print()
+
+sampleP = [1.5, 1.3, 1.8, 1.6, 1.3]
+sample1 = [1.6, 1.7, 1.9, 1.2]
+sample2 = [2.0, 1.4, 1.5, 1.5, 1.8, 1.7, 1.4]
+sample3 = [2.9, 3.1, 2.8, 2.7]
+print(f"Samples: \nP: {sampleP} \n1: {sample1} \n2: {sample2} \n3: {sample3}")
+xP = get_mean(sampleP)
+x1 = get_mean(sample1)
+x2 = get_mean(sample2)
+x3 = get_mean(sample3)
+means = [xP, x1, x2, x3]
+print(f"Means: {means}")
+samples = (sampleP, sample1, sample2, sample3)
+xbarG = get_grand_mean(samples)
+print(f"Grand meam: {xbarG}")
+print("ANOVA Table")
+create_ANOVA_table(samples)
