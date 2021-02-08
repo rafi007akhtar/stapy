@@ -56,6 +56,7 @@ Contains functions related to Inferential Statistics, comprising:
 - r<sup>2</sup> effective size measure
 - dependent samples
 - independent samples
+- analysis of variance (ANOVA)
 
 ### Usage
 Import entire module
