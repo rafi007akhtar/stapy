@@ -290,3 +290,33 @@ print("ANOVA table:")
 create_ANOVA_table(samples)
 eta_squared = get_eta_squared(samples)
 print(f"eta-squared: {eta_squared}")
+
+print()
+
+# correlation
+
+# points = {
+#     12: "3",
+#     1: "7",
+#     13: "11"
+# }
+# scatter_plot(points, (1, 20))
+
+print()
+
+flight_x = [337, 2565, 967, 5124, 2398, 2586, 7412, 522, 1499]
+flight_y = [59.5, 509.5, 124.5, 1480.4, 696.23, 559.5, 1481.5, 474.5, 737.5]
+print(f"flight distance (x): {flight_x}")
+print(f"fligt cost (y): {flight_y}")
+sx = bessel_correction(flight_x)['Sample SD']
+sy = bessel_correction(flight_y)['Sample SD']
+print(f"Sx = {sx} \t Sy = {sy}")
+r = 0.9090036494
+m = get_slope(r, sy, sx)
+print(f"slope = {m}")
+xbar, ybar = get_mean(flight_x), get_mean(flight_y)
+print(f"means: xbar = {xbar} \t ybar = {ybar}")
+x, c = 4000, 160.128
+y = predict_y(x, m, c)
+print(f"y(x={x}, m={m}, c={c}) = {y}")
+

@@ -846,3 +846,51 @@ def get_eta_squared(samples):
 	ss_with = sum_squared_within(samples)
 	ss_total = ss_bet + ss_with
 	return ss_bet / ss_total
+
+def get_slope(r, sy, sx):
+	"""
+	Get the slope for a regression line having given parameters.
+
+	Parameters
+	----------
+	> `r`: regrwssion coefficient of the line
+	> `sy` sample standard deviation of y distribution
+	> `sx`: sample standard deviation of x distribution
+
+	Returns
+	-------
+	The slope of the given regression line with the above parameters.
+	"""
+	
+	return r * (sy / sx)
+
+def predict_y(x0, m, c):
+	"""
+	Predict the value yhat for a regression line with the given parameters.
+
+	Parameters
+	----------
+	> `x0`: the value of predictor
+	> `m`: slope of the regression line
+	> `c`: y-intercept of the regression line
+	"""
+
+	return (m * x0) + c
+
+# def scatter_plot(points, ends):
+# 	"""
+# 	points = {
+# 		"1": "3"
+# 	}
+# 	print(points["1"])  # 3
+# 	"""
+
+# 	x = list(points.keys())
+# 	x.sort()
+
+# 	low, up = ends
+# 	for point in range(low, up):
+# 		if point in x:
+# 			print(f"{point}", end=" ")
+# 		else:
+# 			print(".", end=" ")
