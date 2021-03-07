@@ -864,6 +864,19 @@ def get_slope(r, sy, sx):
 	
 	return r * (sy / sx)
 
+def get_y_intercept(x_dist, y_dist, r):
+	"""
+	y = mx + c => c = y - mx = ybar - r(sy/sx)xbar
+	"""
+
+	ybar = get_mean(y_dist)
+	xbar = get_mean(x_dist)
+	sy = bessel_correction(y_dist)['Sample SD']
+	sx = bessel_correction(x_dist)['Sample SD']
+	m = get_slope(r, sy, sx)
+
+	return ybar - m * xbar
+
 def predict_y(x0, m, c):
 	"""
 	Predict the value yhat for a regression line with the given parameters.
@@ -873,9 +886,46 @@ def predict_y(x0, m, c):
 	> `x0`: the value of predictor
 	> `m`: slope of the regression line
 	> `c`: y-intercept of the regression line
+
+	Returns
+	-------
+	The predicted value of y for the above given parameters.
 	"""
 
-	return (m * x0) + c
+	return (m * x0) + c\
+
+def calculate_x(y0, c, m):
+	"""
+	Calculate the expected value of x given the following paramters.
+
+	Parameters
+	----------
+	> `y0`: the predicted value of y
+	> `c`: y-intercept of the regression line
+	> `m`: slope of the regression line
+
+	Returns
+	-------
+	The expected value x0 for the above given parameters.
+	"""
+
+	return (y0 - c) / m
+
+def confidence_interval_for_regression_line(yhat, error):
+	"""
+	Get the confidence interval for the predicted value of outcome.
+
+	> `yhat`: the predicted value of y
+	> `erroe`: the standard error of estimate
+
+	Returns
+	-------
+	The confidence interval for the predicted value yhat.
+	"""
+
+	low = yhat - error
+	high = yhat + error
+	return (low, high)
 
 # def scatter_plot(points, ends):
 # 	"""

@@ -304,6 +304,8 @@ print()
 
 print()
 
+# regression
+
 flight_x = [337, 2565, 967, 5124, 2398, 2586, 7412, 522, 1499]
 flight_y = [59.5, 509.5, 124.5, 1480.4, 696.23, 559.5, 1481.5, 474.5, 737.5]
 print(f"flight distance (x): {flight_x}")
@@ -319,4 +321,32 @@ print(f"means: xbar = {xbar} \t ybar = {ybar}")
 x, c = 4000, 160.128
 y = predict_y(x, m, c)
 print(f"y(x={x}, m={m}, c={c}) = {y}")
+
+print()
+x = [116, 117, 120, 1, 52, 79, 109, 27, 85, 51, 78, 55, 26, 39, 107]
+y = [60, 67, 64, 8, 13, 63, 63, 2, 46, 27, 43, 24, 10, 28, 56]
+print(f"x = {x} \ny = {y}")
+r = 0.9344650306
+sy = bessel_correction(y)['Sample SD']
+sx = bessel_correction(x)['Sample SD']
+m = get_slope(r, sy, sx)
+r2 = r*r
+print(f"slope = {m} \nr squared = {r2}")
+c = get_y_intercept(x, y, r)
+print(f"y-intercept = {c}")
+y0 = 70
+x0 = calculate_x(y0, c, m)
+print(f"at y = 70, x = {x0}")
+y0 = 0
+x0 = calculate_x(y0, c, m)
+print(f"at y = 1, x = {x0}")
+
+print()
+
+yhats = [2.85, 2.6, 2.35, 3.35]
+for yhat in yhats:
+    error = 3.5
+    CI = confidence_interval_for_regression_line(yhat, error)
+    print(f"confidence interval for expected y {yhat} and error {error} = {CI}")
+
 
