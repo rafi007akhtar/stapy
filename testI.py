@@ -349,4 +349,15 @@ for yhat in yhats:
     CI = confidence_interval_for_regression_line(yhat, error)
     print(f"confidence interval for expected y {yhat} and error {error} = {CI}")
 
+print()
+
+# chi-squared tests
+freqs = [
+    { "fo": 41, "fe": 33 },
+    { "fo": 59, "fe": 67 }
+]
+print(f'Frequencies for Chi squared test: {freqs} \nwhere: fo = observed frequency; fe = expected frequency')
+k2 = chi_squared(freqs)
+print(f"Chi-squared statistic: {k2}")
+
 

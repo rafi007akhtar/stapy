@@ -927,6 +927,34 @@ def confidence_interval_for_regression_line(yhat, error):
 	high = yhat + error
 	return (low, high)
 
+def chi_squared(frequencies):
+	"""
+	Find the chi-squared statistic for the given frequencies.
+
+	Parameter
+	---------
+	> `frequencies`: an array of dictionaries, where each dictionary has two key-value pairs, 
+		the first being observed frequency, while the second being expected frequency
+		Example:
+		[
+			{ "fo": 41, "fe": 33 },
+			{ "fo": 59, "fe": 67 }
+		]
+		Make sure you got the key names ("fo" and "fe") right.
+	
+	Returns
+	-------
+	The chi-squared value of the given frequencies.
+	"""
+
+	k2 = 0
+
+	for freqs in frequencies:
+		fo, fe = freqs["fo"], freqs["fe"]
+		k2 += ((fo - fe) ** 2) / fe
+	
+	return k2
+
 # def scatter_plot(points, ends):
 # 	"""
 # 	points = {
