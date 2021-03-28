@@ -978,20 +978,30 @@ def cramers_v(chi_squared_val, N, k, rc=None):
 	
 	return (chi_squared_val / (N * (k - 1))) ** 0.5
 
-# def scatter_plot(points, ends):
-# 	"""
-# 	points = {
-# 		"1": "3"
-# 	}
-# 	print(points["1"])  # 3
-# 	"""
+def get_cramers_v_strength(v, k):
+	"""
+	"""
 
-# 	x = list(points.keys())
-# 	x.sort()
+	if k < 2 or k > 4:
+		return "cannot be determined; k needs to be between 2 and 4, both inclusive"
 
-# 	low, up = ends
-# 	for point in range(low, up):
-# 		if point in x:
-# 			print(f"{point}", end=" ")
-# 		else:
-# 			print(".", end=" ")
+	small_message = f"Cramer's V of {v} has small effect"
+	medium_message = f"Cramer's V of {v} has medium effect"
+	large_message = f"Cramer's V of {v} has large effect"
+	
+	strength_table = {
+		2: [0.1, 0.3, 0.5],
+		3: [0.07, 0.21, 0.35,],
+		4: [0.5, 0.35, 0.29]
+	}
+	row = strength_table[k]
+	if v <= row[0]:
+		return small_message
+	if v < row[1]:
+		return f"Cramer's V of {v} has effect somewhere between small and medium"
+	if v == row[1]:
+		return medium_message
+	if v > row[1] and v < row[2]:
+		return f"Cramer's V of {v} has effect somewhere between medium and large"
+	if v >= row[2]:
+		return large_message

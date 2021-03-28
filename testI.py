@@ -373,6 +373,8 @@ k2 = chi_squared(freqs)
 print(f"Chi-squared statistic: {k2}")
 responses = ["yes", "no"]
 N = sum([freq["fo"] for freq in freqs])
-v = cramers_v(k2, N, None, (len(responses), len(freqs)/2))
+k = min(len(responses), len(freqs)/2)
+v = cramers_v(k2, N, k)
 print(f"Cramer's V = {v}")
+print(get_cramers_v_strength(v, k))
 
