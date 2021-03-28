@@ -360,4 +360,19 @@ print(f'Frequencies for Chi squared test: {freqs} \nwhere: fo = observed frequen
 k2 = chi_squared(freqs)
 print(f"Chi-squared statistic: {k2}")
 
+freqs = [
+    { "fo": 7, "fe": 9.67 },
+    { "fo": 16, "fe": 9.67 },
+    { "fo": 6, "fe": 9.67 },
+    { "fo": 43, "fe": 40.33 },
+    { "fo": 34, "fe": 40.33 },
+    { "fo": 44, "fe": 40.33 }
+]
+print(f"new freqs: {freqs}")
+k2 = chi_squared(freqs)
+print(f"Chi-squared statistic: {k2}")
+responses = ["yes", "no"]
+N = sum([freq["fo"] for freq in freqs])
+v = cramers_v(k2, N, None, (len(responses), len(freqs)/2))
+print(f"Cramer's V = {v}")
 

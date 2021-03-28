@@ -955,6 +955,29 @@ def chi_squared(frequencies):
 	
 	return k2
 
+def cramers_v(chi_squared_val, N, k, rc=None):
+	"""
+	Get the Cramer's coefficient for a chi-squared test.
+
+	Parameters
+	--------
+	> `chi_squared_val`: the chi-squared value for the test
+	> `N`: the total number of participants, i.e. the sum of participants from each category
+	> `k`: (optional) the minimum value between number of responses (r) and the number of categories (c)
+	> `rc`: a tuple containing (number_of_rows, number_of_categories), in that order
+	Note: Pass `k` as `None` if passing `rc`
+
+	Returns
+	-------
+	The Cramer's coefficient for the given chi-squared test.
+	"""
+
+	if not k:
+		r, c = rc
+		k = min(r, c)
+	
+	return (chi_squared_val / (N * (k - 1))) ** 0.5
+
 # def scatter_plot(points, ends):
 # 	"""
 # 	points = {
