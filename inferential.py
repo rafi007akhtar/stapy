@@ -980,20 +980,34 @@ def cramers_v(chi_squared_val, N, k, rc=None):
 
 def get_cramers_v_strength(v, k):
 	"""
+	Get the strength of a relationship corresponding to Cramer's coefficient.
+
+	Parameters
+	----------
+	> `v`: Cramer's V
+	> `k`: the minimum value between number of responses (r) and the number of categories (c)
+
+	Returns
+	-------
+	A string describing how strong the relationsip is if the values are valid; otherwise an error string.
 	"""
 
-	if k < 2 or k > 4:
-		return "cannot be determined; k needs to be between 2 and 4, both inclusive"
-
-	small_message = f"Cramer's V of {v} has small effect"
-	medium_message = f"Cramer's V of {v} has medium effect"
-	large_message = f"Cramer's V of {v} has large effect"
-	
 	strength_table = {
 		2: [0.1, 0.3, 0.5],
 		3: [0.07, 0.21, 0.35,],
 		4: [0.5, 0.35, 0.29]
 	}
+
+	kmin = list(strength_table.keys())[0]
+	kmax = list(strength_table.keys())[-1]
+
+	if k < kmin or k > kmax:
+		return f"cannot be determined; k needs to be between {kmin} and {kmax}, both inclusive"
+
+	small_message = f"Cramer's V of {v} has small effect"
+	medium_message = f"Cramer's V of {v} has medium effect"
+	large_message = f"Cramer's V of {v} has large effect"
+	
 	row = strength_table[k]
 	if v <= row[0]:
 		return small_message
