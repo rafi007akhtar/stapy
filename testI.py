@@ -378,3 +378,41 @@ v = cramers_v(k2, N, k)
 print(f"Cramer's V = {v}")
 print(get_cramers_v_strength(v, k))
 
+exp = [4] * 6
+obs = [8, 4, 1, 8, 3, 0]
+freqs = []
+for e, o in zip(exp, obs):
+    freq = {"fo": o, "fe": e}
+    freqs.append(freq)
+print(f"Frequencies: {freqs}")
+k2 = chi_squared(freqs)
+print(f"chi-squared value: {k2}")
+
+print()
+# exp_y = get_expected_value_r(sum([7, 16, 6]), sum([7, 16, 6, 43, 34, 44]), 50)
+# print(f"expected value = {exp_y}")
+obs = [
+    [299, 186],
+    [280, 526]
+]
+# obs = [
+#     [7, 16, 6],
+#     [43, 34, 44]
+# ]
+exp = get_expected_frequencies(obs)
+print(f"expected frequencies: {exp}")
+obs_all = []
+for ob in obs:
+    obs_all.extend(ob)
+exp_all = []
+for ob in exp:
+    exp_all.extend(ob)
+print(f"all observed values: {obs_all}, \nall expected values: {exp_all}")
+freqs = []
+for e, o in zip(exp_all, obs_all):
+    freq = {"fo": o, "fe": e}
+    freqs.append(freq)
+print(f"Frequencies: {freqs}")
+k2 = chi_squared(freqs)
+print(f"chi-squared value: {k2}")
+

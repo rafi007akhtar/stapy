@@ -955,6 +955,62 @@ def chi_squared(frequencies):
 	
 	return k2
 
+def get_expected_value_r(sum_fo_r, sum_fo, fg):
+	"""
+	Get the expected frequency from the given parameters.
+
+	Parameters
+	----------
+	> `sum_fo_r`: sum of frequencies for a particular observed response (row sum)
+	> `sum_fo`: sum of all observed frequencies
+	> `fg`: frequency of an observed group / category
+
+	Returns
+	-------
+	The expected frquency value from the given parameters.
+	"""
+
+	return (sum_fo_r / sum_fo) * fg
+
+def get_expected_frequencies(observed_frequencies):
+	"""
+	Get all the expected frequencies from an matrix of observed frequencies.
+
+	Parameters
+	----------
+	> `observed_frequencies`: the matrix of observed frequencies, where each row is a list containing observed frequencies for a particular response
+
+	Returns
+	-------
+	A matrix containing the correponding lists of expected frequencies.
+	"""
+
+	all_obs = []  # array of all observed frequencies expanded into one array
+	for obs in observed_frequencies:
+		all_obs.extend(obs)
+	sum_fo = sum(all_obs)  # sum of all observed frequencies
+
+	r, c = len(observed_frequencies), len(observed_frequencies[0])  # number of rows and columns in the observed_frequencies array
+	fgs = []  # will store the frequency of each group / category
+	for j in range(c):
+		f = 0
+		for i in range(r):
+			f += observed_frequencies[i][j]
+		fgs.append(f)
+	
+	expected_frequencies = []  # will store the expected frequency arrays
+	for obs in observed_frequencies:
+		sum_fo_r = sum(obs)
+		exp = []
+		i = 0
+		for ob in obs:
+			fg = fgs[i]
+			i += 1
+			exp.append(get_expected_value_r(sum_fo_r, sum_fo, fg))
+		expected_frequencies.append(exp)
+	
+	return expected_frequencies
+
 def cramers_v(chi_squared_val, N, k, rc=None):
 	"""
 	Get the Cramer's coefficient for a chi-squared test.
