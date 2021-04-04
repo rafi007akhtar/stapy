@@ -57,6 +57,9 @@ Contains functions related to Inferential Statistics, comprising:
 - dependent samples
 - independent samples
 - analysis of variance (ANOVA)
+- correlation
+- regression
+- chi-squared tests
 
 ### Usage
 Import entire module

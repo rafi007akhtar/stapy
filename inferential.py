@@ -850,7 +850,7 @@ def get_eta_squared(samples):
 	return ss_bet / ss_total
 
 
-### CORELATION ###
+### CORRELATION ###
 
 def get_r(t, N):
 	"""
