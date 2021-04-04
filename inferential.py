@@ -78,7 +78,7 @@ def H0(mean_tuple, z_tuple = None, significance = 5):
 
 	Returns
 	-------
-	True -> if it accepts the null
+	True -> if it retains the null
 	False -> if it rejects the null
 	"""
 	
@@ -95,7 +95,6 @@ def H0(mean_tuple, z_tuple = None, significance = 5):
 		return True  # accept the null
 	return False  # reject the null
 
-
 def HA(mean_tuple, z_tuple = None, significance = 5):
 	"""
 	Accept or reject the alternative hypothesis HA
@@ -109,7 +108,7 @@ def HA(mean_tuple, z_tuple = None, significance = 5):
 
 	Returns
 	-------
-	True -> if it accepts HA
+	True -> if it retains HA
 	False -> if it rejects HA
 	"""
 
@@ -559,6 +558,9 @@ def number_of_tests_for_comparison(ns):
 
 	return (ns * (ns -1)) / 2
 
+
+### ANOVA ###
+
 def get_grand_mean(samples):
 	"""
 	Get the grand mean for a number of samples, or a number of means.
@@ -847,6 +849,23 @@ def get_eta_squared(samples):
 	ss_total = ss_bet + ss_with
 	return ss_bet / ss_total
 
+
+### CORELATION ###
+
+def get_r(t, N):
+	"""
+	Get the Pearson's r given the above parameters.
+
+	Paramters
+	---------
+	> `t`: the t-statistic for the t-test
+	> `N`: total number of participants in the test
+	"""
+	return (t*t / (t*t + N -2)) ** 0.5
+
+
+### REGRESSION ###
+
 def get_slope(r, sy, sx):
 	"""
 	Get the slope for a regression line having given parameters.
@@ -896,7 +915,7 @@ def predict_y(x0, m, c):
 
 def calculate_x(y0, c, m):
 	"""
-	Calculate the expected value of x given the following paramters.
+	Calculate the expected value of x in the eqn. y = mx + c given the following paramters.
 
 	Parameters
 	----------
@@ -916,7 +935,7 @@ def confidence_interval_for_regression_line(yhat, error):
 	Get the confidence interval for the predicted value of outcome.
 
 	> `yhat`: the predicted value of y
-	> `erroe`: the standard error of estimate
+	> `error`: the standard error of estimate
 
 	Returns
 	-------
@@ -926,6 +945,9 @@ def confidence_interval_for_regression_line(yhat, error):
 	low = yhat - error
 	high = yhat + error
 	return (low, high)
+
+
+### CHI-SQUARED TEST ###
 
 def chi_squared(frequencies):
 	"""

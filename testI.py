@@ -60,6 +60,14 @@ print(f"t-statistic for these parameters is {t}")
 
 print()
 
+males = [41, 56, 82, 39, 3, 55, 70, 32, 46, 28, 39, 38, 47, 44, 45, 43, 28, 43, 56, 56, 33, 68, 49, 17, 40, 2, 28, 35, 27, 39, 46, 33, 30, 72, 28, 52, 47, 50, 25, 39]
+famles = [93, 40, 36, 62, 52, 59, 59, 37, 58, 45, 33, 43, 32, 37, 51, 84, 30, 72, 63, 42, 60, 30, 29 ,52, 58, 50, 56, 42]
+SE = 4.01
+t = get_t_stat(get_mean(males), get_mean(famles), SE)
+print(f"t for quiz = {t}")
+
+print()
+
 ## t-critical
 alpha = 0.05
 dof = 12
@@ -295,12 +303,10 @@ print()
 
 # correlation
 
-# points = {
-#     12: "3",
-#     1: "7",
-#     13: "11"
-# }
-# scatter_plot(points, (1, 20))
+t, N = 2.71, 25
+print(f"t = {t}, N = {N}")
+r = get_r(t, N)
+print(f"r = {r}")
 
 print()
 
@@ -389,16 +395,10 @@ k2 = chi_squared(freqs)
 print(f"chi-squared value: {k2}")
 
 print()
-# exp_y = get_expected_value_r(sum([7, 16, 6]), sum([7, 16, 6, 43, 34, 44]), 50)
-# print(f"expected value = {exp_y}")
 obs = [
     [299, 186],
     [280, 526]
 ]
-# obs = [
-#     [7, 16, 6],
-#     [43, 34, 44]
-# ]
 exp = get_expected_frequencies(obs)
 print(f"expected frequencies: {exp}")
 obs_all = []
