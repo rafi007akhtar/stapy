@@ -141,7 +141,7 @@ print()
 Question: A normally distributed population has a mean of mu=100 and a standard deviation of sigma=20.
 What is the probability of randomly selecting a sample of size 4 that has a mean greater than 110?
 
-Question source: [Intro to Statisitcs | Udacity] (https://classroom.udacity.com/courses/st095/lessons/116588932/concepts/2518247670923)
+Question source: [Intro to Statisitcs | Udacity](https://classroom.udacity.com/courses/st095/lessons/116588932/concepts/2518247670923)
 """
 # first, get the SE
 SE = get_SE(sigma=20, n=4)
@@ -152,4 +152,17 @@ area_less = get_area(z_sample)
 # area more than this is 1-area_less
 area_more = 1-area_less
 print(f"Answer: {area_less}")
+
+"""
+Question: Assume the average weight of an American adult male is 180 pounds, with a standard deviation of 34 pounds. The distribution of weights follows a normal distribution. What is the probability that a man weighs somewhere between 120 and 155 pounds?
+
+Question source: [AWS Nanodegree Challenge Course | Udacity](https://classroom.udacity.com/nanodegrees/nd065/parts/a5a4c41f-9cc7-48bd-9f00-582f35a7da53/modules/885b116b-2ca3-453a-8df1-4ea4b436b5da/lessons/b563d22e-85f0-48a7-b486-2b0ef7322092/concepts/12a781f3-22fd-4e7e-ad4e-acfec6014578)
+"""
+mu, sigma = 180, 34
+x1, x2 = 120, 155
+z1, z2 = get_Z_scores([x1, x2], mu, sigma)
+print(f'z1 = {z1}, z2 = {z2}')
+a1 = get_area(z1)
+a2 = get_area(z2)
+print(f'a1 = {a1}, a2 = {a2}, diff = {a2 - a1}')
 

@@ -395,12 +395,18 @@ k2 = chi_squared(freqs)
 print(f"chi-squared value: {k2}")
 
 print()
+# obs = [
+#     [299, 186],
+#     [280, 526]
+# ]
 obs = [
-    [299, 186],
-    [280, 526]
+    [18, 36, 21, 9, 6],
+    [12, 36, 45, 36, 21],
+    [6, 9, 9, 3, 3],
+    [3, 9, 9, 6, 3],
 ]
 exp = get_expected_frequencies(obs)
-print(f"expected frequencies: {exp}")
+print(f"expected frequencies for the question: {exp}")
 obs_all = []
 for ob in obs:
     obs_all.extend(ob)
